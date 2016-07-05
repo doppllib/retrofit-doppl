@@ -15,23 +15,20 @@
  */
 package retrofit;
 
-import android.os.Build;
-import android.os.Process;
 import com.google.gson.Gson;
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
-import retrofit.android.AndroidApacheClient;
+
 import retrofit.android.AndroidLog;
 import retrofit.android.MainThreadExecutor;
-import retrofit.appengine.UrlFetchClient;
 import retrofit.client.Client;
-import retrofit.client.OkClient;
 import retrofit.client.UrlConnectionClient;
 import retrofit.converter.Converter;
 import retrofit.converter.GsonConverter;
 
-import static android.os.Process.THREAD_PRIORITY_BACKGROUND;
+
 import static java.lang.Thread.MIN_PRIORITY;
 
 abstract class Platform {
@@ -44,19 +41,7 @@ abstract class Platform {
   }
 
   private static Platform findPlatform() {
-    try {
-      Class.forName("android.os.Build");
-      if (Build.VERSION.SDK_INT != 0) {
-        return new Android();
-      }
-    } catch (ClassNotFoundException ignored) {
-    }
-
-    if (System.getProperty("com.google.appengine.runtime.version") != null) {
-      return new AppEngine();
-    }
-
-    return new Base();
+    return new Android();
   }
 
   abstract Converter defaultConverter();
@@ -73,9 +58,9 @@ abstract class Platform {
 
     @Override Client.Provider defaultClient() {
       final Client client;
-      if (hasOkHttpOnClasspath()) {
+      /*if (hasOkHttpOnClasspath()) {
         client = OkClientInstantiator.instantiate();
-      } else {
+      } else */{
         client = new UrlConnectionClient();
       }
       return new Client.Provider() {
@@ -119,11 +104,11 @@ abstract class Platform {
 
     @Override Client.Provider defaultClient() {
       final Client client;
-      if (hasOkHttpOnClasspath()) {
+      /*if (hasOkHttpOnClasspath()) {
         client = OkClientInstantiator.instantiate();
       } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD) {
         client = new AndroidApacheClient();
-      } else {
+      } else */{
         client = new UrlConnectionClient();
       }
       return new Client.Provider() {
@@ -138,7 +123,7 @@ abstract class Platform {
         @Override public Thread newThread(final Runnable r) {
           return new Thread(new Runnable() {
             @Override public void run() {
-              Process.setThreadPriority(THREAD_PRIORITY_BACKGROUND);
+//              Process.setThreadPriority(THREAD_PRIORITY_BACKGROUND);
               r.run();
             }
           }, RestAdapter.IDLE_THREAD_NAME);
@@ -155,36 +140,25 @@ abstract class Platform {
     }
   }
 
-  private static class AppEngine extends Base {
-    @Override Client.Provider defaultClient() {
-      final UrlFetchClient client = new UrlFetchClient();
-      return new Client.Provider() {
-        @Override public Client get() {
-          return client;
-        }
-      };
-    }
-  }
-
   /** Determine whether or not OkHttp 1.6 or newer is present on the runtime classpath. */
-  private static boolean hasOkHttpOnClasspath() {
+  /*private static boolean hasOkHttpOnClasspath() {
     try {
       Class.forName("com.squareup.okhttp.OkHttpClient");
       return true;
     } catch (ClassNotFoundException ignored) {
     }
     return false;
-  }
+  }*/
 
   /**
    * Indirection for OkHttp class to prevent VerifyErrors on Android 2.0 and earlier when the
    * dependency is not present.
    */
-  private static class OkClientInstantiator {
+  /*private static class OkClientInstantiator {
     static Client instantiate() {
       return new OkClient();
     }
-  }
+  }*/
 
   private static boolean hasRxJavaOnClasspath() {
     try {
