@@ -10,20 +10,13 @@ dependencies {
     compile 'junit:junit:4.11'
 
     compile 'com.google.code.gson:gson:2.6.2'
-    doppel 'doppel.com.google.code.gson:gson:2.6.2.1@dop'
+    doppel 'doppl.com.google.code.gson:gson:2.6.2.1@dop'
     compile 'io.reactivex:rxjava:1.0.0'
     doppel 'doppl.io.reactivex:rxjava:1.0.0.0@dop'
+    testCompile 'org.mockito:mockito-core:1.9.5'
+    testCompile group: 'com.google.guava', name: 'guava', version: '19.0'
 
 //    testApt 'co.touchlab.doppel:testapt:'+ coreVersion
-}
-
-sourceSets {
-    test {
-        java {
-            srcDir 'src/notest'
-            exclude 'retrofit/**'
-        }
-    }
 }
 
 group = 'doppl.com.squareup.retrofit'
