@@ -80,9 +80,10 @@ import org.assertj.core.util.VisibleForTesting;
  * @author Joel Costigliola
  * @author Nicolas François
  */
-public class Arrays {
+public class InternalArrays
+{
 
-  private static final Arrays INSTANCE = new Arrays();
+  private static final InternalArrays INSTANCE = new InternalArrays();
   private final ComparisonStrategy comparisonStrategy;
 
   /**
@@ -90,15 +91,15 @@ public class Arrays {
    * 
    * @return the singleton instance of this class based on {@link StandardComparisonStrategy}.
    */
-  static Arrays instance() {
+  static InternalArrays instance() {
     return INSTANCE;
   }
 
-  public Arrays() {
+  public InternalArrays() {
     this(StandardComparisonStrategy.instance());
   }
 
-  public Arrays(ComparisonStrategy comparisonStrategy) {
+  public InternalArrays(ComparisonStrategy comparisonStrategy) {
     this.comparisonStrategy = comparisonStrategy;
   }
 
@@ -718,7 +719,7 @@ public class Arrays {
   }
 
   private static void assertNotNull(AssertionInfo info, Object array) {
-    Objects.instance().assertNotNull(info, array);
+    InternalObjects.instance().assertNotNull(info, array);
   }
 
   private static int sizeOf(Object array) {

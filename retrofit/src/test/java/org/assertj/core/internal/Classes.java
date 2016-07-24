@@ -215,7 +215,7 @@ public class Classes {
   }
 
   private static void assertNotNull(AssertionInfo info, Class<?> actual) {
-    Objects.instance().assertNotNull(info, actual);
+    InternalObjects.instance().assertNotNull(info, actual);
   }
 
   /**

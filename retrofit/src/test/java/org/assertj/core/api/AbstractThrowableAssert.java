@@ -14,7 +14,7 @@
  */
 package org.assertj.core.api;
 
-import org.assertj.core.internal.Throwables;
+import org.assertj.core.internal.InternalThrowables;
 import org.assertj.core.util.VisibleForTesting;
 
 /**
@@ -33,7 +33,7 @@ public abstract class AbstractThrowableAssert<S extends AbstractThrowableAssert<
 		extends AbstractAssert<S, A> {
 
 	@VisibleForTesting
-	Throwables throwables = Throwables.instance();
+	InternalThrowables throwables = InternalThrowables.instance();
 
 	protected AbstractThrowableAssert(A actual, Class<?> selfType) {
 		super(actual, selfType);

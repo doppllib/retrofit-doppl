@@ -239,7 +239,7 @@ public class Comparables {
   }
 
   protected static <T> void assertNotNull(AssertionInfo info, T actual) {
-    Objects.instance().assertNotNull(info, actual);
+    InternalObjects.instance().assertNotNull(info, actual);
   }
 
   /**

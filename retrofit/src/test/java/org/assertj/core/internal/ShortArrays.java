@@ -41,7 +41,7 @@ public class ShortArrays {
     return INSTANCE;
   }
 
-  private Arrays arrays = Arrays.instance();
+  private InternalArrays arrays = InternalArrays.instance();
 
   @VisibleForTesting
   Failures failures = Failures.instance();
@@ -52,7 +52,7 @@ public class ShortArrays {
   }
 
   public ShortArrays(ComparisonStrategy comparisonStrategy) {
-    this.arrays = new Arrays(comparisonStrategy);
+    this.arrays = new InternalArrays(comparisonStrategy);
   }
 
   @VisibleForTesting
@@ -327,6 +327,6 @@ public class ShortArrays {
    */
   public void assertIsSortedAccordingToComparator(AssertionInfo info, short[] actual,
       Comparator<? super Short> comparator) {
-    Arrays.assertIsSortedAccordingToComparator(info, failures, actual, comparator);
+    InternalArrays.assertIsSortedAccordingToComparator(info, failures, actual, comparator);
   }
 }

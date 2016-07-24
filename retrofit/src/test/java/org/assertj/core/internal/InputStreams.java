@@ -76,6 +76,6 @@ public class InputStreams {
   }
 
   private static void assertNotNull(AssertionInfo info, InputStream stream) {
-    Objects.instance().assertNotNull(info, stream);
+    InternalObjects.instance().assertNotNull(info, stream);
   }
 }

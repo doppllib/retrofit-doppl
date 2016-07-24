@@ -2,8 +2,15 @@
 package retrofit.mime;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import co.touchlab.doppel.testing.DoppelTest;
+
+
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+@DoppelTest
 
 public class TypedByteArrayTest {
   private static final String GIF = "image/gif";

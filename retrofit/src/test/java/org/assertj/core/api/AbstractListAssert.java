@@ -39,7 +39,7 @@ public abstract class AbstractListAssert<S extends AbstractListAssert<S, A, T>, 
 		IndexedObjectEnumerableAssert<S, T> {
 
 	@VisibleForTesting
-	Lists lists = Lists.instance();
+	InternalLists lists = InternalLists.instance();
 
 	protected AbstractListAssert(A actual, Class<?> selfType) {
 		super(actual, selfType);
@@ -141,14 +141,14 @@ public abstract class AbstractListAssert<S extends AbstractListAssert<S, A, T>, 
 	@Override
 	public S usingElementComparator(Comparator<? super T> customComparator) {
 		super.usingElementComparator(customComparator);
-		lists = new Lists(new ComparatorBasedComparisonStrategy(customComparator));
+		lists = new InternalLists(new ComparatorBasedComparisonStrategy(customComparator));
 		return myself;
 	}
 
     @Override
 	public S usingDefaultElementComparator() {
 		super.usingDefaultElementComparator();
-		lists = Lists.instance();
+		lists = InternalLists.instance();
 		return myself;
 	}
 
@@ -156,7 +156,7 @@ public abstract class AbstractListAssert<S extends AbstractListAssert<S, A, T>, 
     @Override
     protected S usingComparisonStrategy(ComparisonStrategy comparisonStrategy) {
         super.usingComparisonStrategy(comparisonStrategy);
-        lists = new Lists(comparisonStrategy);
+        lists = new InternalLists(comparisonStrategy);
         return myself;
     }
 }

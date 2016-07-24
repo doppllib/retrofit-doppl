@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 import org.assertj.core.internal.ComparatorBasedComparisonStrategy;
-import org.assertj.core.internal.Strings;
+import org.assertj.core.internal.InternalStrings;
 import org.assertj.core.util.VisibleForTesting;
 
 import static org.assertj.core.api.Assertions.contentOf;
@@ -45,7 +45,7 @@ public abstract class AbstractCharSequenceAssert<S extends AbstractCharSequenceA
     extends AbstractAssert<S, A> implements EnumerableAssert<S, Character> {
 
   @VisibleForTesting
-  Strings strings = Strings.instance();
+  InternalStrings strings = InternalStrings.instance();
 
   protected AbstractCharSequenceAssert(A actual, Class<?> selfType) {
     super(actual, selfType);
@@ -657,14 +657,14 @@ public abstract class AbstractCharSequenceAssert<S extends AbstractCharSequenceA
   @Override
   public S usingComparator(Comparator<? super A> customComparator) {
     super.usingComparator(customComparator);
-    this.strings = new Strings(new ComparatorBasedComparisonStrategy(customComparator));
+    this.strings = new InternalStrings(new ComparatorBasedComparisonStrategy(customComparator));
     return myself;
   }
 
   @Override
   public S usingDefaultComparator() {
     super.usingDefaultComparator();
-    this.strings = Strings.instance();
+    this.strings = InternalStrings.instance();
     return myself;
   }
 

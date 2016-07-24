@@ -8,8 +8,13 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import co.touchlab.doppel.testing.DoppelHacks;
+import co.touchlab.doppel.testing.DoppelTest;
+
 import retrofit.client.Header;
 import retrofit.client.Response;
 import retrofit.mime.TypedInput;
@@ -28,6 +33,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static retrofit.RequestInterceptor.RequestFacade;
 import static retrofit.RxSupport.Invoker;
 
+@DoppelHacks //Fixins
 public class RxSupportTest {
 
   private Object response;
@@ -56,6 +62,7 @@ public class RxSupportTest {
                     Collections.<Header>emptyList(), mock(TypedInput.class)
             ), response
     );
+
     executor = spy(new QueuedSynchronousExecutor());
     rxSupport = new RxSupport(executor, ErrorHandler.DEFAULT, requestInterceptor);
   }

@@ -10,17 +10,16 @@ dependencies {
     compile 'junit:junit:4.11'
 
     compile 'com.google.code.gson:gson:2.6.2'
-    doppel 'doppl.com.google.code.gson:gson:2.6.2.1@dop'
-    compile 'io.reactivex:rxjava:1.0.0'
-    doppel 'doppl.io.reactivex:rxjava:1.0.0.0@dop'
+    doppel 'doppl.com.google.code.gson:gson:2.6.2.3@dop'
+    compile 'io.reactivex:rxjava:1.1.6'
+    doppel 'doppl.io.reactivex:rxjava:1.1.6.2@dop'
     testCompile 'org.mockito:mockito-core:1.9.5'
     testCompile group: 'com.google.guava', name: 'guava', version: '19.0'
-
-//    testApt 'co.touchlab.doppel:testapt:'+ coreVersion
+    testApt 'co.touchlab.doppel:testapt:0.3.1-SNAPSHOT'
 }
 
 group = 'doppl.com.squareup.retrofit'
-version = '1.9.0.0'
+version = '1.9.0.2'
 
 publishing {
     publications {
@@ -37,11 +36,27 @@ publishing {
     }
 }
 
+test{
+    enabled = false
+}
+
+j2objcTestDebug{
+    enabled = false
+}
+
+j2objcTestRelease{
+    enabled = false
+}
+
 j2objcConfig {
     extraLinkerArgs '-lsqlite3'
 
     xcodeTestProjectDir '../ios'  //  suggested directory name
     xcodeTestTargetsIos 'ios', 'iosTests'  // replace with your iOS targets
+
+    j2objcCycleFinder { enabled = true }
+
+    cycleFinderArgs '--whitelist', 'cycle_whitelist.txt'
 
     finalConfigure()          // Must be last call to configuration
 

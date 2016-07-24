@@ -42,15 +42,16 @@ import org.assertj.core.util.VisibleForTesting;
  * @author Joel Costigliola
  */
 // TODO inherits from Collections to avoid repeating comparisonStrategy ?
-public class Lists {
+public class InternalLists
+{
 
-  private static final Lists INSTANCE = new Lists();
+  private static final InternalLists INSTANCE = new InternalLists();
 
   /**
    * Returns the singleton instance of this class.
    * @return the singleton instance of this class.
    */
-  public static Lists instance() {
+  public static InternalLists instance() {
     return INSTANCE;
   }
 
@@ -60,11 +61,11 @@ public class Lists {
   Failures failures = Failures.instance();
 
   @VisibleForTesting
-  Lists() {
+  InternalLists() {
     this(StandardComparisonStrategy.instance());
   }
 
-  public Lists(ComparisonStrategy comparisonStrategy) {
+  public InternalLists(ComparisonStrategy comparisonStrategy) {
     this.comparisonStrategy = comparisonStrategy;
   }
 
@@ -89,7 +90,7 @@ public class Lists {
    */
   public void assertContains(AssertionInfo info, List<?> actual, Object value, Index index) {
     assertNotNull(info, actual);
-    Iterables.instance().assertNotEmpty(info, actual);
+    InternalIterables.instance().assertNotEmpty(info, actual);
     checkIndexValueIsValid(index, actual.size() - 1);
     Object actualElement = actual.get(index.value);
     if (areEqual(actualElement, value)) return;
@@ -242,7 +243,7 @@ public class Lists {
   private <T> boolean conditionIsMetAtIndex(AssertionInfo info, List<T> actual, Condition<? super T> condition, Index index) {
     assertNotNull(info, actual);
     assertNotNull(condition);
-    Iterables.instance().assertNotEmpty(info, actual);
+    InternalIterables.instance().assertNotEmpty(info, actual);
     checkIndexValueIsValid(index, actual.size() - 1);
     return condition.matches(actual.get(index.value));
   }
@@ -257,7 +258,7 @@ public class Lists {
   }
 
   private void assertNotNull(AssertionInfo info, List<?> actual) {
-    Objects.instance().assertNotNull(info, actual);
+    InternalObjects.instance().assertNotNull(info, actual);
   }
 
   private void assertNotNull(Condition<?> condition) {

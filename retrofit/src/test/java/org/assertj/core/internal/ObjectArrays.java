@@ -46,7 +46,7 @@ public class ObjectArrays {
     return INSTANCE;
   }
 
-  private Arrays arrays = Arrays.instance();
+  private InternalArrays arrays = InternalArrays.instance();
 
   @VisibleForTesting
   ObjectArrays() {
@@ -54,7 +54,7 @@ public class ObjectArrays {
   }
 
   public ObjectArrays(ComparisonStrategy comparisonStrategy) {
-    this.arrays = new Arrays(comparisonStrategy);
+    this.arrays = new InternalArrays(comparisonStrategy);
   }
 
   @VisibleForTesting
@@ -459,7 +459,7 @@ public class ObjectArrays {
   }
 
   public <E> void assertHasAtLeastOneElementOfType(AssertionInfo info, E[] actual, Class<?> type) {
-	Objects.instance().assertNotNull(info, actual);
+	InternalObjects.instance().assertNotNull(info, actual);
 	boolean found = false;
 	for (Object o : actual) {
 	  if (!type.isInstance(o)) continue;
@@ -470,7 +470,7 @@ public class ObjectArrays {
   }
   
   public <E> void assertHasOnlyElementsOfType(AssertionInfo info, E[] actual, Class<?> type) {
-	Objects.instance().assertNotNull(info, actual);
+	InternalObjects.instance().assertNotNull(info, actual);
 	for (Object o : actual) {
 	  if (!type.isInstance(o)) throw failures.failure(info, shouldHaveOnlyElementsOfType(actual, type, o.getClass()));
 	}
@@ -494,7 +494,7 @@ public class ObjectArrays {
    * @param comparator the {@link Comparator} used to compare array elements
    */
   public <E> void assertIsSortedAccordingToComparator(AssertionInfo info, E[] actual, Comparator<? super E> comparator) {
-    Arrays.assertIsSortedAccordingToComparator(info, failures, actual, comparator);
+    InternalArrays.assertIsSortedAccordingToComparator(info, failures, actual, comparator);
   }
 
   /**

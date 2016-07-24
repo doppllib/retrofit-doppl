@@ -51,15 +51,16 @@ import org.assertj.core.util.VisibleForTesting;
  * @author Joel Costigliola
  * @author William Delanoue
  */
-public class Dates {
+public class InternalDates
+{
 
-  private static final Dates INSTANCE = new Dates();
+  private static final InternalDates INSTANCE = new InternalDates();
 
   /**
    * Returns the singleton instance of this class.
    * @return the singleton instance of this class.
    */
-  public static Dates instance() {
+  public static InternalDates instance() {
     return INSTANCE;
   }
 
@@ -67,13 +68,13 @@ public class Dates {
   Failures failures = Failures.instance();
 
   @VisibleForTesting
-  Dates() {
+  InternalDates() {
     this(StandardComparisonStrategy.instance());
   }
 
   private final ComparisonStrategy comparisonStrategy;
 
-  public Dates(ComparisonStrategy comparisonStrategy) {
+  public InternalDates(ComparisonStrategy comparisonStrategy) {
     this.comparisonStrategy = comparisonStrategy;
   }
 
@@ -721,7 +722,7 @@ public class Dates {
   }
 
   private void assertNotNull(AssertionInfo info, Date actual) {
-    Objects.instance().assertNotNull(info, actual);
+    InternalObjects.instance().assertNotNull(info, actual);
   }
 
   /**

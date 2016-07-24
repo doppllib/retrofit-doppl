@@ -42,7 +42,7 @@ public class BooleanArrays {
     return INSTANCE;
   }
 
-  private final Arrays arrays = Arrays.instance();
+  private final InternalArrays arrays = InternalArrays.instance();
 
   @VisibleForTesting
   Failures failures = Failures.instance();
@@ -318,7 +318,7 @@ public class BooleanArrays {
    */
   public void assertIsSortedAccordingToComparator(AssertionInfo info, boolean[] actual,
       Comparator<? super Boolean> comparator) {
-    Arrays.assertIsSortedAccordingToComparator(info, failures, actual, comparator);
+    InternalArrays.assertIsSortedAccordingToComparator(info, failures, actual, comparator);
   }
 
 }

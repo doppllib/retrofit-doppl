@@ -75,6 +75,6 @@ public class Booleans {
   }
 
   private static void assertNotNull(AssertionInfo info, Boolean actual) {
-    Objects.instance().assertNotNull(info, actual);
+    InternalObjects.instance().assertNotNull(info, actual);
   }
 }

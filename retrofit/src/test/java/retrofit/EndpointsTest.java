@@ -5,13 +5,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import co.touchlab.doppel.testing.DoppelTest;
-import co.touchlab.doppel.testing.DopplSkipJavaJUnit4ClassRunner;
+
 
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DoppelTest
-@RunWith(DopplSkipJavaJUnit4ClassRunner.class)
+
 public class EndpointsTest {
   @Test public void endpointOnly() {
     Endpoint endpoint = Endpoints.newFixedEndpoint("http://example.com");

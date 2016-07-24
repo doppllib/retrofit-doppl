@@ -59,11 +59,12 @@ import org.assertj.core.util.introspection.IntrospectionError;
  * @author Nicolas François
  * @author Mikhail Mazursky
  */
-public class Objects {
+public class InternalObjects
+{
 
-  private static final Objects INSTANCE = new Objects();
+  private static final InternalObjects INSTANCE        = new InternalObjects();
   @VisibleForTesting
-  final PropertySupport propertySupport = PropertySupport.instance();
+  final                PropertySupport propertySupport = PropertySupport.instance();
   private final ComparisonStrategy comparisonStrategy;
   @VisibleForTesting
   Failures failures = Failures.instance();
@@ -75,16 +76,16 @@ public class Objects {
    * 
    * @return the singleton instance of this class based on {@link StandardComparisonStrategy}.
    */
-  public static Objects instance() {
+  public static InternalObjects instance() {
 	return INSTANCE;
   }
 
   @VisibleForTesting
-  Objects() {
+  InternalObjects() {
 	this(StandardComparisonStrategy.instance());
   }
 
-  public Objects(ComparisonStrategy comparisonStrategy) {
+  public InternalObjects(ComparisonStrategy comparisonStrategy) {
 	this.comparisonStrategy = comparisonStrategy;
   }
 

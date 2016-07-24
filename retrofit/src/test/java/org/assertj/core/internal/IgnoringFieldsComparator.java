@@ -19,7 +19,7 @@ public class IgnoringFieldsComparator extends FieldByFieldComparator {
   
   @Override
   protected boolean areEqual(Object actualElement, Object otherElement) {
-    return Objects.instance().areEqualToIgnoringGivenFields(actualElement, otherElement, fields);
+    return InternalObjects.instance().areEqualToIgnoringGivenFields(actualElement, otherElement, fields);
   }
   
   @Override

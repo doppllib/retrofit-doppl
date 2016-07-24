@@ -42,7 +42,7 @@ public class IntArrays {
     return INSTANCE;
   }
 
-  private Arrays arrays = Arrays.instance();
+  private InternalArrays arrays = InternalArrays.instance();
 
   @VisibleForTesting
   Failures failures = Failures.instance();
@@ -53,7 +53,7 @@ public class IntArrays {
   }
 
   public IntArrays(ComparisonStrategy comparisonStrategy) {
-    this.arrays = new Arrays(comparisonStrategy);
+    this.arrays = new InternalArrays(comparisonStrategy);
   }
 
   @VisibleForTesting
@@ -327,7 +327,7 @@ public class IntArrays {
    */
   public void assertIsSortedAccordingToComparator(AssertionInfo info, int[] actual,
       Comparator<? super Integer> comparator) {
-    Arrays.assertIsSortedAccordingToComparator(info, failures, actual, comparator);
+    InternalArrays.assertIsSortedAccordingToComparator(info, failures, actual, comparator);
   }
 
 }

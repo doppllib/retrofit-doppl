@@ -41,7 +41,7 @@ public class FloatArrays {
     return INSTANCE;
   }
 
-  private Arrays arrays = Arrays.instance();
+  private InternalArrays arrays = InternalArrays.instance();
 
   @VisibleForTesting
   Failures failures = Failures.instance();
@@ -52,7 +52,7 @@ public class FloatArrays {
   }
 
   public FloatArrays(ComparisonStrategy comparisonStrategy) {
-    this.arrays = new Arrays(comparisonStrategy);
+    this.arrays = new InternalArrays(comparisonStrategy);
   }
 
   @VisibleForTesting
@@ -311,7 +311,7 @@ public class FloatArrays {
    * @param comparator the {@link Comparator} used to compare array elements
    */
   public void assertIsSortedAccordingToComparator(AssertionInfo info, float[] actual, Comparator<? super Float> comparator) {
-    Arrays.assertIsSortedAccordingToComparator(info, failures, actual, comparator);
+    InternalArrays.assertIsSortedAccordingToComparator(info, failures, actual, comparator);
   }
 
 }

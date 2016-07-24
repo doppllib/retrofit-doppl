@@ -29,7 +29,7 @@ public class OnFieldsComparator extends FieldByFieldComparator {
 
   @Override
   protected boolean areEqual(Object actualElement, Object otherElement) {
-	return Objects.instance().areEqualToComparingOnlyGivenFields(actualElement, otherElement, fields);
+	return InternalObjects.instance().areEqualToComparingOnlyGivenFields(actualElement, otherElement, fields);
   }
 
   @Override

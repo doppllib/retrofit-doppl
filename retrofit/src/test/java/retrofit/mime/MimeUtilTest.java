@@ -2,9 +2,16 @@
 package retrofit.mime;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import co.touchlab.doppel.testing.DoppelTest;
+
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static retrofit.mime.MimeUtil.parseCharset;
+
+@DoppelTest
 
 public class MimeUtilTest {
   @Test public void charsetParsing() {

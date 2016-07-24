@@ -41,7 +41,7 @@ import static org.assertj.core.error.ShouldNotContain.shouldNotContain;
 import static org.assertj.core.error.ShouldNotContainNull.shouldNotContainNull;
 import static org.assertj.core.error.ShouldNotHaveDuplicates.shouldNotHaveDuplicates;
 import static org.assertj.core.error.ShouldStartWith.shouldStartWith;
-import static org.assertj.core.internal.Arrays.assertIsArray;
+import static org.assertj.core.internal.InternalArrays.assertIsArray;
 import static org.assertj.core.internal.CommonValidations.checkIsNotNull;
 import static org.assertj.core.internal.CommonValidations.checkIsNotNullAndNotEmpty;
 import static org.assertj.core.internal.CommonValidations.checkSizes;
@@ -72,9 +72,10 @@ import org.assertj.core.util.VisibleForTesting;
  * @author Nicolas François
  * @author Joel Costigliola
  */
-public class Iterables {
+public class InternalIterables
+{
 
-  private static final Iterables INSTANCE = new Iterables();
+  private static final InternalIterables INSTANCE = new InternalIterables();
   private final ComparisonStrategy comparisonStrategy;
   @VisibleForTesting
   Failures failures = Failures.instance();
@@ -86,16 +87,16 @@ public class Iterables {
    * 
    * @return the singleton instance of this class based on {@link StandardComparisonStrategy}.
    */
-  public static Iterables instance() {
+  public static InternalIterables instance() {
     return INSTANCE;
   }
 
   @VisibleForTesting
-  Iterables() {
+  InternalIterables() {
     this(StandardComparisonStrategy.instance());
   }
 
-  public Iterables(ComparisonStrategy comparisonStrategy) {
+  public InternalIterables(ComparisonStrategy comparisonStrategy) {
     this.comparisonStrategy = comparisonStrategy;
   }
 
@@ -939,7 +940,7 @@ public class Iterables {
   }
 
   private void assertNotNull(AssertionInfo info, Iterable<?> actual) {
-    Objects.instance().assertNotNull(info, actual);
+    InternalObjects.instance().assertNotNull(info, actual);
   }
 
   private AssertionError actualDoesNotEndWithSequence(AssertionInfo info, Iterable<?> actual, Object[] sequence) {

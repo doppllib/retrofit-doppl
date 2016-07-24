@@ -5,8 +5,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import co.touchlab.doppel.testing.DoppelTest;
+
+
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+@DoppelTest
 
 public class TypedFileTest {
   private static final String PNG = "image/png";

@@ -32,9 +32,9 @@ import org.assertj.core.internal.ComparisonStrategy;
 import org.assertj.core.internal.FieldByFieldComparator;
 import org.assertj.core.internal.IgnoringFieldsComparator;
 import org.assertj.core.internal.IterableElementComparisonStrategy;
-import org.assertj.core.internal.Iterables;
+import org.assertj.core.internal.InternalIterables;
 import org.assertj.core.internal.ObjectArrays;
-import org.assertj.core.internal.Objects;
+import org.assertj.core.internal.InternalObjects;
 import org.assertj.core.internal.OnFieldsComparator;
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.core.util.introspection.IntrospectionError;
@@ -61,7 +61,7 @@ public abstract class AbstractIterableAssert<S extends AbstractIterableAssert<S,
     extends AbstractAssert<S, A> implements ObjectEnumerableAssert<S, T> {
 
   @VisibleForTesting
-  Iterables iterables = Iterables.instance();
+  InternalIterables iterables = InternalIterables.instance();
 
   protected AbstractIterableAssert(A actual, Class<?> selfType) {
 	super(actual, selfType);
@@ -448,10 +448,10 @@ public abstract class AbstractIterableAssert<S extends AbstractIterableAssert<S,
    */
   @Override
   public S usingElementComparator(Comparator<? super T> elementComparator) {
-	this.iterables = new Iterables(new ComparatorBasedComparisonStrategy(elementComparator));
+	this.iterables = new InternalIterables(new ComparatorBasedComparisonStrategy(elementComparator));
 	// to have the same semantics on base assertions like isEqualTo, we need to use an iterable comparator comparing
 	// elements with elementComparator parameter
-	objects = new Objects(new IterableElementComparisonStrategy<T>(elementComparator));
+	objects = new InternalObjects(new IterableElementComparisonStrategy<T>(elementComparator));
 	return myself;
   }
 
@@ -461,7 +461,7 @@ public abstract class AbstractIterableAssert<S extends AbstractIterableAssert<S,
   @Override
   public S usingDefaultElementComparator() {
 	usingDefaultComparator();
-	this.iterables = Iterables.instance();
+	this.iterables = InternalIterables.instance();
 	return myself;
   }
 
@@ -982,7 +982,7 @@ public abstract class AbstractIterableAssert<S extends AbstractIterableAssert<S,
   }
 
   protected S usingComparisonStrategy(ComparisonStrategy comparisonStrategy) {
-	iterables = new Iterables(comparisonStrategy);
+	iterables = new InternalIterables(comparisonStrategy);
 	return myself;
   }
 

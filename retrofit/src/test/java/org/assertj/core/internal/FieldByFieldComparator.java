@@ -18,7 +18,7 @@ public class FieldByFieldComparator implements Comparator<Object> {
   }
 
   protected boolean areEqual(Object actual, Object other) {
-	return Objects.instance().areEqualToIgnoringGivenFields(actual, other);
+	return InternalObjects.instance().areEqualToIgnoringGivenFields(actual, other);
   }
 
   @Override

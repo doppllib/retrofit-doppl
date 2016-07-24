@@ -21,7 +21,7 @@ import java.util.Comparator;
 import java.util.Map;
 
 import org.assertj.core.data.MapEntry;
-import org.assertj.core.internal.Maps;
+import org.assertj.core.internal.InternalMaps;
 import org.assertj.core.util.VisibleForTesting;
 
 /**
@@ -44,7 +44,7 @@ public abstract class AbstractMapAssert<S extends AbstractMapAssert<S, A, K, V>,
     extends AbstractAssert<S, A> implements EnumerableAssert<S, MapEntry> {
 
   @VisibleForTesting
-  Maps maps = Maps.instance();
+  InternalMaps maps = InternalMaps.instance();
 
   protected AbstractMapAssert(A actual, Class<?> selfType) {
 	super(actual, selfType);

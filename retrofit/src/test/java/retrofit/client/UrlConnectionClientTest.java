@@ -10,12 +10,18 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import co.touchlab.doppel.testing.DoppelTest;
+
 import retrofit.TestingUtils;
 import retrofit.mime.TypedOutput;
 import retrofit.mime.TypedString;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static retrofit.TestingUtils.assertBytes;
+
+@DoppelTest
 
 public class UrlConnectionClientTest {
   private static final String HOST = "http://example.com";

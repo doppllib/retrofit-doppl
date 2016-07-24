@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.internal.ComparatorBasedComparisonStrategy;
-import org.assertj.core.internal.Dates;
+import org.assertj.core.internal.InternalDates;
 import org.assertj.core.util.VisibleForTesting;
 
 /**
@@ -65,7 +65,7 @@ public abstract class AbstractDateAssert<S extends AbstractDateAssert<S>> extend
     }
   };
   @VisibleForTesting
-  Dates dates = Dates.instance();
+  InternalDates dates = InternalDates.instance();
 
   protected AbstractDateAssert(Date actual, Class<?> selfType) {
     super(actual, selfType);
@@ -2309,14 +2309,14 @@ public abstract class AbstractDateAssert<S extends AbstractDateAssert<S>> extend
   @Override
   public S usingComparator(Comparator<? super Date> customComparator) {
     super.usingComparator(customComparator);
-    this.dates = new Dates(new ComparatorBasedComparisonStrategy(customComparator));
+    this.dates = new InternalDates(new ComparatorBasedComparisonStrategy(customComparator));
     return myself;
   }
 
   @Override
   public S usingDefaultComparator() {
     super.usingDefaultComparator();
-    this.dates = Dates.instance();
+    this.dates = InternalDates.instance();
     return myself;
   }
 

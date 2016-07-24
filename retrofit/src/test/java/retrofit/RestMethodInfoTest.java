@@ -8,6 +8,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import co.touchlab.doppel.testing.DoppelHacks;
+import co.touchlab.doppel.testing.DoppelTest;
+
+import co.touchlab.doppel.testing.PlatformUtils;
 import retrofit.client.Response;
 import retrofit.http.GET;
 import retrofit.http.Query;
@@ -17,6 +23,8 @@ import rx.Observable;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings("unused") // Lots of unused parameters for example code.
+@DoppelTest
+
 public class RestMethodInfoTest {
   @Test public void pathParameterParsing() throws Exception {
     expectParams("/");
@@ -123,7 +131,10 @@ public class RestMethodInfoTest {
   // a little of everything: a parameterized type, a generic array, and a wildcard.
   private static Map<? extends String, Set<Long>[]> extendingGenericCallbackType;
 
+  @DoppelHacks //j2objc doesn't like making the weird types
   @Test public void extendingGenericCallback() throws Exception {
+    if(PlatformUtils.isJ2objc())
+      return;
     class Example {
       @GET("/foo") void a(MultimapCallback<String, Set<Long>> callback) {
       }
@@ -222,9 +233,9 @@ public class RestMethodInfoTest {
     assertThat(methodInfo.responseObjectType).isEqualTo(expected);
   }
 
-  private static interface ResponseCallback extends Callback<Response> {
+  private interface ResponseCallback extends Callback<Response> {
   }
 
-  private static interface MultimapCallback<K, V> extends Callback<Map<? extends K, V[]>> {
+  private interface MultimapCallback<K, V> extends Callback<Map<? extends K, V[]>> {
   }
 }

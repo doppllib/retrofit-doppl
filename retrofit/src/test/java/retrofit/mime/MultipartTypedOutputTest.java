@@ -3,8 +3,15 @@ package retrofit.mime;
 
 import java.io.ByteArrayOutputStream;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import co.touchlab.doppel.testing.DoppelTest;
+
+
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+@DoppelTest
 
 public class MultipartTypedOutputTest {
   @Test public void singlePart() throws Exception {

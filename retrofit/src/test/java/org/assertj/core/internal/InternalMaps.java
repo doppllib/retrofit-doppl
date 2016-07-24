@@ -27,7 +27,7 @@ import static org.assertj.core.error.ShouldNotBeEmpty.shouldNotBeEmpty;
 import static org.assertj.core.error.ShouldNotContain.shouldNotContain;
 import static org.assertj.core.error.ShouldNotContainKey.shouldNotContainKey;
 import static org.assertj.core.error.ShouldNotContainValue.shouldNotContainValue;
-import static org.assertj.core.internal.Arrays.assertIsArray;
+import static org.assertj.core.internal.InternalArrays.assertIsArray;
 import static org.assertj.core.internal.CommonValidations.checkSizes;
 import static org.assertj.core.internal.CommonValidations.hasSameSizeAsCheck;
 import static org.assertj.core.util.Objects.areEqual;
@@ -47,16 +47,17 @@ import org.assertj.core.util.VisibleForTesting;
  * @author Alex Ruiz
  * @author Nicolas François
  */
-public class Maps {
+public class InternalMaps
+{
 
-  private static final Maps INSTANCE = new Maps();
+  private static final InternalMaps INSTANCE = new InternalMaps();
 
   /**
    * Returns the singleton instance of this class.
    * 
    * @return the singleton instance of this class.
    */
-  public static Maps instance() {
+  public static InternalMaps instance() {
     return INSTANCE;
   }
 
@@ -64,7 +65,7 @@ public class Maps {
   Failures failures = Failures.instance();
 
   @VisibleForTesting
-  Maps() {
+  InternalMaps() {
   }
 
   /**
@@ -509,7 +510,7 @@ public class Maps {
   }
 
   private void assertNotNull(AssertionInfo info, Map<?, ?> actual) {
-    Objects.instance().assertNotNull(info, actual);
+    InternalObjects.instance().assertNotNull(info, actual);
   }
 
   private static void failIfEmptySinceActualIsNotEmpty(MapEntry[] values) {

@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.util.Collections;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import co.touchlab.doppel.testing.DoppelTest;
+
 import retrofit.client.Client;
 import retrofit.client.Header;
 import retrofit.client.Request;
@@ -19,6 +23,8 @@ import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
+
+@DoppelTest
 
 public class ErrorHandlerTest {
 

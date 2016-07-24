@@ -14,6 +14,9 @@
  */
 package org.assertj.core.api;
 
+import com.google.j2objc.annotations.Weak;
+
+
 import static org.assertj.core.util.Strings.formatIfArgs;
 
 import java.util.Comparator;
@@ -23,7 +26,7 @@ import org.assertj.core.error.BasicErrorMessageFactory;
 import org.assertj.core.internal.ComparatorBasedComparisonStrategy;
 import org.assertj.core.internal.Conditions;
 import org.assertj.core.internal.Failures;
-import org.assertj.core.internal.Objects;
+import org.assertj.core.internal.InternalObjects;
 import org.assertj.core.util.VisibleForTesting;
 
 /**
@@ -42,7 +45,7 @@ import org.assertj.core.util.VisibleForTesting;
 public abstract class AbstractAssert<S extends AbstractAssert<S, A>, A> implements Assert<S, A> {
 
   @VisibleForTesting
-  Objects objects = Objects.instance();
+  InternalObjects objects = InternalObjects.instance();
 
   @VisibleForTesting
   Conditions conditions = Conditions.instance();
@@ -53,6 +56,8 @@ public abstract class AbstractAssert<S extends AbstractAssert<S, A>, A> implemen
   // visibility is protected to allow us write custom assertions that need access to actual
   @VisibleForTesting
   protected final A actual;
+
+  @Weak
   protected final S myself;
 
   // we prefer not to use Class<? extends S> selfType because it would force inherited
@@ -389,7 +394,7 @@ public abstract class AbstractAssert<S extends AbstractAssert<S, A>, A> implemen
   @Override
   public S usingComparator(Comparator<? super A> customComparator) {
     // using a specific strategy to compare actual with other objects.
-    this.objects = new Objects(new ComparatorBasedComparisonStrategy(customComparator));
+    this.objects = new InternalObjects(new ComparatorBasedComparisonStrategy(customComparator));
     return myself;
   }
 
@@ -397,7 +402,7 @@ public abstract class AbstractAssert<S extends AbstractAssert<S, A>, A> implemen
   @Override
   public S usingDefaultComparator() {
     // fall back to default strategy to compare actual with other objects.
-    this.objects = Objects.instance();
+    this.objects = InternalObjects.instance();
     return myself;
   }
 

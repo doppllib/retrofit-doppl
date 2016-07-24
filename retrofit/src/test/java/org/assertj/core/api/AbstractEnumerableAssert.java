@@ -1,8 +1,8 @@
 package org.assertj.core.api;
 
-import static org.assertj.core.internal.Arrays.assertIsArray;
+import static org.assertj.core.internal.InternalArrays.assertIsArray;
 
-import org.assertj.core.internal.Arrays;
+import org.assertj.core.internal.InternalArrays;
 
 /**
  * Base implementation for Enumerable class assertions.
@@ -33,7 +33,7 @@ public abstract class AbstractEnumerableAssert<S extends AbstractEnumerableAsser
    */
   public S hasSameSizeAs(Object other) {
     assertIsArray(info, other);
-    new Arrays().assertHasSameSizeAs(info, actual, other);
+    new InternalArrays().assertHasSameSizeAs(info, actual, other);
     return myself;
   }
 

@@ -14,7 +14,7 @@
  */
 package org.assertj.core.api;
 
-import org.assertj.core.internal.Files;
+import org.assertj.core.internal.InternalFiles;
 import org.assertj.core.util.FilesException;
 import org.assertj.core.util.VisibleForTesting;
 
@@ -39,7 +39,7 @@ import java.nio.charset.Charset;
 public abstract class AbstractFileAssert<S extends AbstractFileAssert<S>> extends AbstractAssert<S, File> {
 
   @VisibleForTesting
-  Files files = Files.instance();
+  InternalFiles files = InternalFiles.instance();
 
   @VisibleForTesting
   Charset charset = Charset.defaultCharset();

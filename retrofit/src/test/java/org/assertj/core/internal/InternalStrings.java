@@ -29,7 +29,7 @@ import static org.assertj.core.error.ShouldNotBeEmpty.shouldNotBeEmpty;
 import static org.assertj.core.error.ShouldNotContainCharSequence.shouldNotContain;
 import static org.assertj.core.error.ShouldNotMatchPattern.shouldNotMatch;
 import static org.assertj.core.error.ShouldStartWith.shouldStartWith;
-import static org.assertj.core.internal.Arrays.assertIsArray;
+import static org.assertj.core.internal.InternalArrays.assertIsArray;
 import static org.assertj.core.internal.CommonErrors.arrayOfValuesToLookForIsEmpty;
 import static org.assertj.core.internal.CommonErrors.arrayOfValuesToLookForIsNull;
 import static org.assertj.core.internal.CommonValidations.checkOtherIsNotNull;
@@ -37,8 +37,6 @@ import static org.assertj.core.internal.CommonValidations.checkLineCounts;
 import static org.assertj.core.internal.CommonValidations.checkSameSizes;
 import static org.assertj.core.internal.CommonValidations.checkSizes;
 import static org.assertj.core.internal.CommonValidations.hasSameSizeAsCheck;
-
-import static org.assertj.core.util.xml.XmlStringPrettyFormatter.xmlPrettyFormat;
 
 import java.io.IOException;
 import java.io.LineNumberReader;
@@ -60,9 +58,10 @@ import org.assertj.core.util.VisibleForTesting;
  * @author Nicolas François
  * @author Mikhail Mazursky
  */
-public class Strings {
+public class InternalStrings
+{
 
-  private static final Strings INSTANCE = new Strings();
+  private static final InternalStrings INSTANCE = new InternalStrings();
   private final ComparisonStrategy comparisonStrategy;
   @VisibleForTesting
   Failures failures = Failures.instance();
@@ -72,16 +71,16 @@ public class Strings {
    * 
    * @return the singleton instance of this class based on {@link StandardComparisonStrategy}.
    */
-  public static Strings instance() {
+  public static InternalStrings instance() {
     return INSTANCE;
   }
 
   @VisibleForTesting
-  Strings() {
+  InternalStrings() {
     this(StandardComparisonStrategy.instance());
   }
 
-  public Strings(ComparisonStrategy comparisonStrategy) {
+  public InternalStrings(ComparisonStrategy comparisonStrategy) {
     this.comparisonStrategy = comparisonStrategy;
   }
 
@@ -205,13 +204,13 @@ public class Strings {
    * @throws AssertionError if the number of entries in the given {@code CharSequence} does not have the same size.
    */
   public void assertHasSameSizeAs(AssertionInfo info, CharSequence actual, Object array) {
-    Objects.instance().assertNotNull(info, actual);
+    InternalObjects.instance().assertNotNull(info, actual);
     assertIsArray(info, array);
     hasSameSizeAsCheck(info, actual, array, actual.length());
   }
 
   public void assertHasSameSizeAs(AssertionInfo info, CharSequence actual, CharSequence other) {
-    Objects.instance().assertNotNull(info, actual);
+    InternalObjects.instance().assertNotNull(info, actual);
     checkOtherIsNotNull(other, "CharSequence or String");
     checkSameSizes(info, actual, actual.length(), other.length());
   }
@@ -506,7 +505,7 @@ public class Strings {
   }
 
   private void assertNotNull(AssertionInfo info, CharSequence actual) {
-    Objects.instance().assertNotNull(info, actual);
+    InternalObjects.instance().assertNotNull(info, actual);
   }
 
   public void assertContainsSequence(AssertionInfo info, CharSequence actual, CharSequence[] values) {
@@ -541,16 +540,7 @@ public class Strings {
   }
 
   public void assertXmlEqualsTo(AssertionInfo info, CharSequence actualXml, CharSequence expectedXml) {
-    // check that actual and expected XML CharSequence are not null.
-    // we consider that null values don't make much sense when you want to compare XML document as String/CharSequence.
-    checkCharSequenceIsNotNull(expectedXml);
-    assertNotNull(info, actualXml);
-    // we only use default comparison strategy, it does not make sense to use a specific comparison strategy
-    final String formattedActualXml = xmlPrettyFormat(actualXml.toString());
-    final String formattedExpectedXml = xmlPrettyFormat(expectedXml.toString());
-    if (!comparisonStrategy.areEqual(formattedActualXml, formattedExpectedXml))
-      throw failures.failure(info, shouldBeEqual(formattedActualXml, formattedExpectedXml, comparisonStrategy,
-          info.representation()));
+    throw new UnsupportedOperationException("Oh shit");
   }
 
 }

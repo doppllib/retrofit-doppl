@@ -15,6 +15,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import co.touchlab.doppel.testing.DoppelTest;
+
 import retrofit.client.Header;
 import retrofit.client.Request;
 import retrofit.client.Response;
@@ -56,6 +60,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;
 
 @SuppressWarnings("UnusedParameters") // Parameters inspected reflectively.
+@DoppelTest
+
 public class RequestBuilderTest {
   private RequestInterceptor interceptor;
 

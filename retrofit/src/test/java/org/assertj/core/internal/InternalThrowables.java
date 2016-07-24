@@ -35,16 +35,17 @@ import org.assertj.core.util.VisibleForTesting;
  * 
  * @author Joel Costigliola
  */
-public class Throwables {
+public class InternalThrowables
+{
 
-  private static final Throwables INSTANCE = new Throwables();
+  private static final InternalThrowables INSTANCE = new InternalThrowables();
 
   /**
    * Returns the singleton instance of this class.
    * 
    * @return the singleton instance of this class.
    */
-  public static Throwables instance() {
+  public static InternalThrowables instance() {
     return INSTANCE;
   }
 
@@ -52,7 +53,7 @@ public class Throwables {
   Failures failures = Failures.instance();
 
   @VisibleForTesting
-  Throwables() {
+  InternalThrowables() {
   }
 
   /**
@@ -208,6 +209,6 @@ public class Throwables {
   }
 
   private static void assertNotNull(AssertionInfo info, Throwable actual) {
-    Objects.instance().assertNotNull(info, actual);
+    InternalObjects.instance().assertNotNull(info, actual);
   }
 }

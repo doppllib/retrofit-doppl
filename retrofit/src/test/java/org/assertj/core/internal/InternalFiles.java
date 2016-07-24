@@ -49,15 +49,16 @@ import static org.assertj.core.util.Objects.areEqual;
  * @author Alex Ruiz
  * @author Olivier Demeijer
  */
-public class Files {
+public class InternalFiles
+{
 
-  private static final Files INSTANCE = new Files();
+  private static final InternalFiles INSTANCE = new InternalFiles();
 
   /**
    * Returns the singleton instance of this class.
    * @return the singleton instance of this class.
    */
-  public static Files instance() {
+  public static InternalFiles instance() {
     return INSTANCE;
   }
 
@@ -69,7 +70,7 @@ public class Files {
   Failures failures = Failures.instance();
 
   @VisibleForTesting
-  Files() {}
+  InternalFiles() {}
 
   /**
    * Asserts that the given files have equal content. Adapted from <a
@@ -328,7 +329,7 @@ public class Files {
   }
 
   private static void assertNotNull(AssertionInfo info, File actual) {
-    Objects.instance().assertNotNull(info, actual);
+    InternalObjects.instance().assertNotNull(info, actual);
   }
 
   /**
