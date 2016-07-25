@@ -2,7 +2,6 @@ package retrofit;
 
 import org.junit.Test;
 
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 
@@ -11,11 +10,11 @@ import static org.mockito.Mockito.spy;
  */
 public class CheckMockTest
 {
-    @Test public void observableCallsOnNextOnHttpExecutor() {
+    @Test public void mockingTypes() {
         CheckMock mockMock = mock(CheckMock.class);
         mockMock.writeThings();
-        CheckMock spyMock = spy(new CheckMock());
-        spyMock.writeThings();
+//        CheckMock spyMock = spy(new CheckMock());
+//        spyMock.writeThings();
     }
 
     public static class CheckMock

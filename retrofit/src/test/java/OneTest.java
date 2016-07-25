@@ -4,8 +4,6 @@ import org.junit.runner.notification.Failure;
 
 import java.util.List;
 
-import retrofit.CheckMockTest;
-import retrofit.RxSupportTest;
 
 /**
  * Created by kgalligan on 7/11/16.
@@ -39,20 +37,18 @@ public class OneTest
     private static Result runTestsByMyself(JUnitCore junit)
     {
         return junit.run(
-//                retrofit.CallbackRunnableTest.class,
-//                retrofit.EndpointsTest.class,
-//                retrofit.ErrorHandlerTest.class,
-//                retrofit.RequestBuilderTest.class,
-//                retrofit.RestAdapterTest.class,
-//                retrofit.RestMethodInfoTest.class,
-//                retrofit.client.UrlConnectionClientTest.class,
-//                retrofit.mime.FormUrlEncodingTypedOutputTest.class,
-//                retrofit.mime.MimeUtilTest.class,
-//                retrofit.mime.MultipartTypedOutputTest.class,
-//                retrofit.mime.TypedByteArrayTest.class,
-//                retrofit.mime.TypedFileTest.class,
-//                retrofit.RxSupportTest.class
-                retrofit.CheckMockTest.class
+                retrofit.CallbackRunnableTest.class,
+                retrofit.EndpointsTest.class,
+                retrofit.ErrorHandlerTest.class,
+                retrofit.RequestBuilderTest.class,
+                retrofit.RestAdapterTest.class,
+                retrofit.RestMethodInfoTest.class,
+                retrofit.client.UrlConnectionClientTest.class,
+                retrofit.mime.FormUrlEncodingTypedOutputTest.class,
+                retrofit.mime.MimeUtilTest.class,
+                retrofit.mime.MultipartTypedOutputTest.class,
+                retrofit.mime.TypedByteArrayTest.class,
+                retrofit.mime.TypedFileTest.class
         );
     }
 

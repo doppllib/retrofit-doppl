@@ -53,6 +53,7 @@ public class RxSupportTest {
 
   @Mock Observer<Object> subscriber;
 
+  @DoppelHacks //No spy support in j2objc mockito
   @Before public void setUp() {
     MockitoAnnotations.initMocks(this);
     response = new Object();
@@ -63,7 +64,7 @@ public class RxSupportTest {
             ), response
     );
 
-    executor = spy(new QueuedSynchronousExecutor());
+    executor = new QueuedSynchronousExecutor();
     rxSupport = new RxSupport(executor, ErrorHandler.DEFAULT, requestInterceptor);
   }
 
