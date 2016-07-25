@@ -1,3 +1,7 @@
+#Doppl Info
+
+The only active branch for Doppl changes is [1.9.0](https://github.com/doppllib/retrofit-doppl/tree/v1.9.0). Go there for info related to Doppl.
+
 Retrofit
 ========
 
