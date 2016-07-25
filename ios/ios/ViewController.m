@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "AllTests.h"
-#import "OneTest.h"
+#import "OneTestRunner.h"
 #import "java/lang/System.h"
 
 @interface ViewController ()
@@ -25,7 +25,7 @@
 - (IBAction)runClicked:(id)sender {
     
     
-    [OneTest runTests];
+    [OneTestRunner runTests];
     //    [_benchmarkPresenter startBenchmark];
     //    [_simpleTestPresenter runDbTest];
 }

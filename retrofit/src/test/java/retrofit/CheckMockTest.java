@@ -2,12 +2,16 @@ package retrofit;
 
 import org.junit.Test;
 
+import co.touchlab.doppel.testing.DoppelTest;
+
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 
 /**
  * Created by kgalligan on 7/24/16.
  */
+@DoppelTest
 public class CheckMockTest
 {
     @Test public void mockingTypes() {

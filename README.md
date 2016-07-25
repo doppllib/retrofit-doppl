@@ -1,3 +1,16 @@
+#Doppl Info
+
+##Testing
+
+The tests run 100%, except for RestAdapterTest.bodyTypedInputExceptionThrowsNetworkError. Anything with Mockito.spy had to be coded around as the current j2objc implementation of Mockito
+does not support spy (hasn't been completed. Has nothing to do with the tech).
+
+Initial effort to remove potential memory cycles has been completed. Should monitor in app builds to make sure that's not an issue.
+
+Appengine and OkHttp clients have been removed until OkHttp support can be added to doppl. This is also why we're currently pegged to v1.9.0.
+
+Otherwise stable and functional.
+
 Retrofit
 ========
 

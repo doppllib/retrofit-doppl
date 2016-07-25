@@ -41,7 +41,7 @@ test{
 }
 
 j2objcTestDebug{
-    enabled = false
+    enabled = true
 }
 
 j2objcTestRelease{
@@ -57,6 +57,10 @@ j2objcConfig {
     j2objcCycleFinder { enabled = true }
 
     cycleFinderArgs '--whitelist', 'cycle_whitelist.txt'
+
+    testPattern {
+        include '**/*Test.java'
+    }
 
     finalConfigure()          // Must be last call to configuration
 
