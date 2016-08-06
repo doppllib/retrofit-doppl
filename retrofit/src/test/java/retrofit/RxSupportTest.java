@@ -41,27 +41,15 @@ public class RxSupportTest {
 
   private Object response;
   private ResponseWrapper responseWrapper;
-  private SpyInvoker invoker = new SpyInvoker();
-
-  private class SpyInvoker implements Invoker
-  {
-    int count = 0;
+  private Invoker invoker = spy(new Invoker() {
     @Override public ResponseWrapper invoke(RequestInterceptor requestInterceptor) {
-      count++;
       return responseWrapper;
     }
-  }
-  private SpyRequestInterceptor requestInterceptor = new SpyRequestInterceptor();
-
-  private static class SpyRequestInterceptor implements RequestInterceptor
-  {
-    int count = 0;
-    @Override
-    public void intercept(RequestFacade request)
-    {
-      count++;
+  });
+  private RequestInterceptor requestInterceptor = spy(new RequestInterceptor() {
+    @Override public void intercept(RequestFacade request) {
     }
-  }
+  });
 
   private QueuedSynchronousExecutor executor;
   private RxSupport rxSupport;
@@ -79,7 +67,7 @@ public class RxSupportTest {
             ), response
     );
 
-    executor = new QueuedSynchronousExecutor();
+    executor = spy(new QueuedSynchronousExecutor());
     rxSupport = new RxSupport(executor, ErrorHandler.DEFAULT, requestInterceptor);
   }
 
@@ -109,8 +97,7 @@ public class RxSupportTest {
     subscription.unsubscribe();
 
     executor.executeNextInQueue();
-    Assert.assertEquals(0, invoker.count);
-//    verify(invoker, never()).invoke(any(RequestInterceptor.class));
+    verify(invoker, never()).invoke(any(RequestInterceptor.class));
     verify(subscriber, never()).onNext(response);
   }
 
@@ -163,8 +150,7 @@ public class RxSupportTest {
 
     // Should have no response yet, but callback should of been executed.
     verify(subscriber, never()).onNext(any());
-    Assert.assertEquals(1, invoker.count);
-//    verify(invoker, times(1)).invoke(any(RequestInterceptor.class));
+    verify(invoker, times(1)).invoke(any(RequestInterceptor.class));
 
     // Forward the Observable Scheduler
     observe.triggerActions();
@@ -176,13 +162,11 @@ public class RxSupportTest {
     rxSupport.createRequestObservable(invoker).subscribe(subscriber);
 
     // The interceptor should have been called for each request upon subscription.
-    Assert.assertEquals(2, requestInterceptor.count);
-//    verify(requestInterceptor, times(2)).intercept(any(RequestFacade.class));
+    verify(requestInterceptor, times(2)).intercept(any(RequestFacade.class));
 
     // Background execution of the requests should not touch the interceptor.
     executor.executeAll();
-    Assert.assertEquals(2, requestInterceptor.count);
-//    verifyNoMoreInteractions(requestInterceptor);
+    verifyNoMoreInteractions(requestInterceptor);
   }
 
   /**

@@ -41,7 +41,7 @@ test{
 }
 
 j2objcTestDebug{
-    enabled = true
+    enabled = false
 }
 
 j2objcTestRelease{

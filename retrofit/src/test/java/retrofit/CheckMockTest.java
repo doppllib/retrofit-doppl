@@ -17,8 +17,8 @@ public class CheckMockTest
     @Test public void mockingTypes() {
         CheckMock mockMock = mock(CheckMock.class);
         mockMock.writeThings();
-//        CheckMock spyMock = spy(new CheckMock());
-//        spyMock.writeThings();
+        CheckMock spyMock = spy(new CheckMock());
+        spyMock.writeThings();
     }
 
     public static class CheckMock

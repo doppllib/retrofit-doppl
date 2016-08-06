@@ -40,6 +40,7 @@ abstract class CallbackRunnable<T> implements Runnable {
   @Override public final void run() {
     try {
       final ResponseWrapper wrapper = obtainResponse();
+      System.out.println("Wrapper is :"+ wrapper);
       callbackExecutor.execute(new Runnable() {
         @Override public void run() {
           callback.success((T) wrapper.responseBody, wrapper.response);
