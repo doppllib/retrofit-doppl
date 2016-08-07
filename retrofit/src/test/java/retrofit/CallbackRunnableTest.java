@@ -4,7 +4,8 @@ package retrofit;
 import java.util.concurrent.Executor;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.stubbing.OngoingStubbing;
+
+import co.touchlab.doppel.testing.DoppelTest;
 
 
 import static org.mockito.Matchers.any;
@@ -15,6 +16,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static retrofit.Utils.SynchronousExecutor;
 
+@DoppelTest
 public class CallbackRunnableTest {
   private Executor executor = spy(new SynchronousExecutor());
   private CallbackRunnable<Object> callbackRunnable;
@@ -23,20 +25,7 @@ public class CallbackRunnableTest {
 
   @Before public void setUp() {
     callback = mock(Callback.class);
-    callbackRunnable = spy(new SpyCallbackRunnable<Object>(callback, executor, errorHandler));
-  }
-
-  static class SpyCallbackRunnable<T> extends CallbackRunnable<T>
-  {
-    SpyCallbackRunnable(Callback<T> callback, Executor callbackExecutor, ErrorHandler errorHandler)
-    {
-      super(callback, callbackExecutor, errorHandler);
-    }
-
-    @Override public ResponseWrapper obtainResponse() {
-      System.out.println("ResponseWrapper: called the real one");
-      return null; // Must be mocked.
-    }
+    callbackRunnable = spy(new SemiAnonymousCallbackRunnable(callback, executor, errorHandler));
   }
 
   @Test public void responsePassedToSuccess() {
@@ -45,8 +34,17 @@ public class CallbackRunnableTest {
 
     callbackRunnable.run();
 
-//    verify(executor).execute(any(Runnable.class));
-//    verify(callback).success(same(wrapper.responseBody), same(wrapper.response));
+    verify(executor).execute(any(Runnable.class));
+    verify(callback).success(same(wrapper.responseBody), same(wrapper.response));
   }
 
+  @Test public void errorPassedToFailure() {
+    RetrofitError exception = RetrofitError.unexpectedError("", new RuntimeException());
+    when(callbackRunnable.obtainResponse()).thenThrow(exception);
+
+    callbackRunnable.run();
+
+    verify(executor).execute(any(Runnable.class));
+    verify(callback).failure(same(exception));
+  }
 }
