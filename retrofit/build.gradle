@@ -15,7 +15,7 @@ dependencies {
     doppel 'doppl.io.reactivex:rxjava:1.1.6.2@dop'
     testCompile 'org.mockito:mockito-core:1.9.5'
     testCompile group: 'com.google.guava', name: 'guava', version: '19.0'
-    testApt 'co.touchlab.doppel:testapt:0.3.1-SNAPSHOT'
+    testApt 'co.touchlab.doppel:testapt:0.3.2-SNAPSHOT'
 }
 
 group = 'doppl.com.squareup.retrofit'

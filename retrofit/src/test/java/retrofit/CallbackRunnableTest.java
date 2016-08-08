@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import co.touchlab.doppel.testing.DoppelTest;
+import co.touchlab.doppel.testing.ElementTreeDebug;
+import co.touchlab.doppel.testing.MockGen;
 
 
 import static org.mockito.Matchers.any;
@@ -17,6 +19,7 @@ import static org.mockito.Mockito.when;
 import static retrofit.Utils.SynchronousExecutor;
 
 @DoppelTest
+@MockGen(classes = {"retrofit.Utils.SynchronousExecutor", "retrofit.CallbackRunnableTest.SemiAnonymousCallbackRunnable"})
 public class CallbackRunnableTest {
   private Executor executor = spy(new SynchronousExecutor());
   private CallbackRunnable<Object> callbackRunnable;
@@ -46,5 +49,19 @@ public class CallbackRunnableTest {
 
     verify(executor).execute(any(Runnable.class));
     verify(callback).failure(same(exception));
+  }
+
+  static class SemiAnonymousCallbackRunnable extends CallbackRunnable<Object>
+  {
+    SemiAnonymousCallbackRunnable(Callback<Object> callback, Executor callbackExecutor, ErrorHandler errorHandler)
+    {
+      super(callback, callbackExecutor, errorHandler);
+    }
+
+    @Override
+    public ResponseWrapper obtainResponse()
+    {
+      return null;
+    }
   }
 }

@@ -18,6 +18,7 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import co.touchlab.doppel.testing.DoppelTest;
+import co.touchlab.doppel.testing.MockGen;
 import retrofit.client.Client;
 import retrofit.client.Header;
 import retrofit.client.Request;
@@ -55,7 +56,8 @@ import static retrofit.RestAdapter.LogLevel.HEADERS;
 import static retrofit.RestAdapter.LogLevel.HEADERS_AND_ARGS;
 import static retrofit.Utils.SynchronousExecutor;
 
-@DoppelTest //Mockito spy isn't working in j2objc
+@DoppelTest
+@MockGen(classes = {/*"retrofit.Utils.SynchronousExecutor",*/ "retrofit.mime.TypedString", "java.io.ByteArrayInputStream", "java.io.InputStream"})
 public class RestAdapterTest {
   private static final List<Header> NO_HEADERS = Collections.emptyList();
   private static final List<Header> TWO_HEADERS =
@@ -98,22 +100,11 @@ public class RestAdapterTest {
   private Profiler<Object> mockProfiler;
   private Example example;
 
-  static class SpySynchronousExecutor extends SynchronousExecutor
-  {
-    boolean called = false;
-    @Override
-    public void execute(Runnable runnable)
-    {
-      called = true;
-      super.execute(runnable);
-    }
-  }
-
   @SuppressWarnings("unchecked") // Mock profiler type erasure.
   @Before public void setUp() throws Exception{
     mockClient = mock(Client.class);
-    mockRequestExecutor = new SpySynchronousExecutor();
-    mockCallbackExecutor = new SpySynchronousExecutor();
+    mockRequestExecutor = spy(new SynchronousExecutor());
+    mockCallbackExecutor = spy(new SynchronousExecutor());
     mockProfiler = mock(Profiler.class);
 
     example = new RestAdapter.Builder() //
@@ -438,8 +429,8 @@ public class RestAdapterTest {
 
     example.something();
 
-    Assert.assertFalse(((SpySynchronousExecutor)mockRequestExecutor).called);
-    Assert.assertFalse(((SpySynchronousExecutor)mockCallbackExecutor).called);
+    verifyZeroInteractions(mockRequestExecutor);
+    verifyZeroInteractions(mockCallbackExecutor);
   }
 
   @Test public void asynchronousUsesExecutors() throws Exception {
@@ -449,10 +440,8 @@ public class RestAdapterTest {
 
     example.something(callback);
 
-    Assert.assertTrue(((SpySynchronousExecutor)mockRequestExecutor).called);
-    Assert.assertTrue(((SpySynchronousExecutor)mockCallbackExecutor).called);
-//    verify(mockRequestExecutor).execute(any(CallbackRunnable.class));
-//    verify(mockCallbackExecutor).execute(any(Runnable.class));
+    verify(mockRequestExecutor).execute(any(CallbackRunnable.class));
+    verify(mockCallbackExecutor).execute(any(Runnable.class));
     verify(callback).success(eq("Hey"), same(response));
   }
 
@@ -578,9 +567,7 @@ public class RestAdapterTest {
     }
   }
 
-  //TODO: Put this back if spy works
-  /*@Test public void bodyTypedInputExceptionThrowsNetworkError() throws Exception {
-
+  @Test public void bodyTypedInputExceptionThrowsNetworkError() throws Exception {
     TypedInput body = spy(new TypedString("{}"));
     InputStream bodyStream = mock(InputStream.class, new Answer() {
       @Override public Object answer(InvocationOnMock invocation) throws Throwable {
@@ -596,12 +583,13 @@ public class RestAdapterTest {
       example.something();
       fail("RetrofitError expected on malformed response body.");
     } catch (RetrofitError e) {
-      assertThat(e.getKind()).isEqualTo(RetrofitError.Kind.NETWORK);
       assertThat(e.isNetworkError());
+      e.getCause().printStackTrace();
       assertThat(e.getCause()).isInstanceOf(IOException.class);
+      assertThat(e.getKind()).isEqualTo(RetrofitError.Kind.NETWORK);
       assertThat(e.getCause()).hasMessage("I'm broken!");
     }
-  }*/
+  }
 
   @Test public void unexpectedExceptionThrows() {
     RuntimeException exception = new RuntimeException("More breakage.");
@@ -658,37 +646,14 @@ public class RestAdapterTest {
         .build()
         .create(Example.class);
 
-    SpyByteArrayInputStream is = new SpyByteArrayInputStream("hello".getBytes());
+    ByteArrayInputStream is = spy(new ByteArrayInputStream("hello".getBytes()));
     TypedInput typedInput = mock(TypedInput.class);
     when(typedInput.in()).thenReturn(is);
     Response response = new Response("http://example.com/", 200, "OK", NO_HEADERS, typedInput);
     when(mockClient.execute(any(Request.class))) //
         .thenReturn(response);
     example.something();
-
-    Assert.assertTrue(is.closedCalled);
-//    verify(is).close();
-  }
-
-  static class SpyByteArrayInputStream extends ByteArrayInputStream
-  {
-    boolean closedCalled;
-    public SpyByteArrayInputStream(byte[] buf)
-    {
-      super(buf);
-    }
-
-    public SpyByteArrayInputStream(byte[] buf, int offset, int length)
-    {
-      super(buf, offset, length);
-    }
-
-    @Override
-    public void close() throws IOException
-    {
-      closedCalled = true;
-      super.close();
-    }
+    verify(is).close();
   }
 
   @Test public void getResponseDirectlyAsync() throws Exception {
@@ -699,10 +664,8 @@ public class RestAdapterTest {
 
     example.direct(callback);
 
-    Assert.assertTrue(((SpySynchronousExecutor)mockRequestExecutor).called);
-    Assert.assertTrue(((SpySynchronousExecutor)mockCallbackExecutor).called);
-//    verify(mockRequestExecutor).execute(any(CallbackRunnable.class));
-//    verify(mockCallbackExecutor).execute(any(Runnable.class));
+    verify(mockRequestExecutor).execute(any(CallbackRunnable.class));
+    verify(mockCallbackExecutor).execute(any(Runnable.class));
     verify(callback).success(eq(response), same(response));
   }
 
@@ -714,10 +677,8 @@ public class RestAdapterTest {
 
     example.something(callback);
 
-    Assert.assertTrue(((SpySynchronousExecutor)mockRequestExecutor).called);
-    Assert.assertTrue(((SpySynchronousExecutor)mockCallbackExecutor).called);
-//    verify(mockRequestExecutor).execute(any(CallbackRunnable.class));
-//    verify(mockCallbackExecutor).execute(any(Runnable.class));
+    verify(mockRequestExecutor).execute(any(CallbackRunnable.class));
+    verify(mockCallbackExecutor).execute(any(Runnable.class));
 
     ArgumentCaptor<String> responseCaptor = ArgumentCaptor.forClass(String.class);
     verify(callback).success(responseCaptor.capture(), same(response));
@@ -733,10 +694,8 @@ public class RestAdapterTest {
 
     example.something(callback);
 
-    Assert.assertTrue(((SpySynchronousExecutor)mockRequestExecutor).called);
-    Assert.assertTrue(((SpySynchronousExecutor)mockCallbackExecutor).called);
-//    verify(mockRequestExecutor).execute(any(CallbackRunnable.class));
-//    verify(mockCallbackExecutor).execute(any(Runnable.class));
+    verify(mockRequestExecutor).execute(any(CallbackRunnable.class));
+    verify(mockCallbackExecutor).execute(any(Runnable.class));
 
     ArgumentCaptor<RetrofitError> errorCaptor = ArgumentCaptor.forClass(RetrofitError.class);
     verify(callback).failure(errorCaptor.capture());
@@ -791,9 +750,7 @@ public class RestAdapterTest {
 
     example.observable("Howdy").subscribe(mock(Action1.class));
 
-    Assert.assertTrue(((SpySynchronousExecutor)mockRequestExecutor).called);
-    Assert.assertFalse(((SpySynchronousExecutor)mockCallbackExecutor).called);
-//    verify(mockRequestExecutor, atLeastOnce()).execute(any(Runnable.class));
-//    verifyZeroInteractions(mockCallbackExecutor);
+    verify(mockRequestExecutor, atLeastOnce()).execute(any(Runnable.class));
+    verifyZeroInteractions(mockCallbackExecutor);
   }
 }

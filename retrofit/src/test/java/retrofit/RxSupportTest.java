@@ -7,19 +7,19 @@ import java.util.Iterator;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import co.touchlab.doppel.testing.DoppelHacks;
 import co.touchlab.doppel.testing.DoppelTest;
 
+import co.touchlab.doppel.testing.MockGen;
 import retrofit.client.Header;
 import retrofit.client.Response;
 import retrofit.mime.TypedInput;
+import rx.Observable;
 import rx.Observer;
 import rx.Subscription;
 import rx.schedulers.Schedulers;
@@ -36,29 +36,66 @@ import static retrofit.RequestInterceptor.RequestFacade;
 import static retrofit.RxSupport.Invoker;
 
 @DoppelTest
-@DoppelHacks //Fixins
+@DoppelHacks //Mockito spy classes need to be named. Using apt to generate mock sources
+@MockGen(classes = {"retrofit.RxSupportTest.SpyInvoker", "retrofit.RxSupportTest.SpyRequestInterceptor",
+        "retrofit.RxSupportTest.QueuedSynchronousExecutor", "retrofit.RxSupportTest.MockSubscriber"})
 public class RxSupportTest {
 
   private Object response;
   private ResponseWrapper responseWrapper;
-  private Invoker invoker = spy(new Invoker() {
+  private Invoker invoker;
+  private RequestInterceptor requestInterceptor = spy(new SpyRequestInterceptor());
+
+  static class SpyRequestInterceptor implements RequestInterceptor
+  {
+    @Override public void intercept(RequestFacade request) {
+    }
+  }
+
+  static class SpyInvoker implements Invoker
+  {
+    final ResponseWrapper responseWrapper;
+
+    SpyInvoker(ResponseWrapper responseWrapper)
+    {
+      this.responseWrapper = responseWrapper;
+    }
+
     @Override public ResponseWrapper invoke(RequestInterceptor requestInterceptor) {
       return responseWrapper;
     }
-  });
-  private RequestInterceptor requestInterceptor = spy(new RequestInterceptor() {
-    @Override public void intercept(RequestFacade request) {
-    }
-  });
+  }
 
   private QueuedSynchronousExecutor executor;
   private RxSupport rxSupport;
 
-  @Mock Observer<Object> subscriber;
+  MockSubscriber subscriber;
 
-  @DoppelHacks //No spy support in j2objc mockito
+  static class MockSubscriber implements Observer<Object>
+  {
+
+    @Override
+    public void onCompleted()
+    {
+
+    }
+
+    @Override
+    public void onError(Throwable e)
+    {
+
+    }
+
+    @Override
+    public void onNext(Object o)
+    {
+
+    }
+  }
+
   @Before public void setUp() {
-    MockitoAnnotations.initMocks(this);
+//    MockitoAnnotations.initMocks(this);
+    subscriber = mock(MockSubscriber.class);
     response = new Object();
     responseWrapper = new ResponseWrapper(
             new Response(
@@ -66,7 +103,7 @@ public class RxSupportTest {
                     Collections.<Header>emptyList(), mock(TypedInput.class)
             ), response
     );
-
+    invoker = spy(new SpyInvoker(responseWrapper));
     executor = spy(new QueuedSynchronousExecutor());
     rxSupport = new RxSupport(executor, ErrorHandler.DEFAULT, requestInterceptor);
   }

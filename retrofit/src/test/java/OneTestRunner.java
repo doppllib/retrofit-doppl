@@ -37,7 +37,14 @@ public class OneTestRunner
     private static Result runTestsByMyself(JUnitCore junit)
     {
         return junit.run(
-                retrofit.CallbackRunnableTest.class
+                /*retrofit.CallbackRunnableTest.class,
+                retrofit.CheckMockTest.class,
+                retrofit.EndpointsTest.class,
+                retrofit.ErrorHandlerTest.class,
+                retrofit.RequestBuilderTest.class,
+                retrofit.RestAdapterTest.class,
+                retrofit.RestMethodInfoTest.class,*/
+                retrofit.RxSupportTest.class
 //                ,
 //                retrofit.CheckMockTest.class,
 //                retrofit.EndpointsTest.class,

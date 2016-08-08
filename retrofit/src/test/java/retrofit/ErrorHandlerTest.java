@@ -25,7 +25,6 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
 @DoppelTest
-
 public class ErrorHandlerTest {
 
   interface ExampleClient {

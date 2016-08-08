@@ -25,7 +25,7 @@
 - (IBAction)runClicked:(id)sender {
     
     
-    [OneTestRunner runTests];
+    [AllTests runTests];
     //    [_benchmarkPresenter startBenchmark];
     //    [_simpleTestPresenter runDbTest];
 }
