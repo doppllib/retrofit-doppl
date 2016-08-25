@@ -2,14 +2,17 @@
 
 ##Testing
 
-The tests run 100%, except for RestAdapterTest.bodyTypedInputExceptionThrowsNetworkError. Anything with Mockito.spy had to be coded around as the current j2objc implementation of Mockito
-does not support spy (hasn't been completed. Has nothing to do with the tech).
+The tests run 100% when run in xcode (visually). Anything with Mockito.spy is using the source-gen mock
+classes rather than dynamic class generation, which means they're named classes. This shouldn't impact
+the validity of the tests.
 
 Initial effort to remove potential memory cycles has been completed. Should monitor in app builds to make sure that's not an issue.
 
-Appengine and OkHttp clients have been removed until OkHttp support can be added to doppl. This is also why we're currently pegged to v1.9.0.
+Apache and OkHttp clients have been removed until OkHttp support can be added to doppl. Anything Appengine related has been removed. We're pegged to v1.9.0 because v2 uses Okhttp (AFAIK).
 
-Otherwise stable and functional.
+Otherwise retrofit is stable and functional.
+
+#End Doppl Info
 
 Retrofit
 ========
