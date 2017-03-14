@@ -1204,8 +1204,6 @@
 		631741F41E319ED0006B3C1B /* CoTouchlabDopplTestingElementTreeDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 63173A6C1E319EC8006B3C1B /* CoTouchlabDopplTestingElementTreeDebug.m */; };
 		631741F51E319ED0006B3C1B /* CoTouchlabDopplTestingMockGen.h in Headers */ = {isa = PBXBuildFile; fileRef = 63173A6D1E319EC8006B3C1B /* CoTouchlabDopplTestingMockGen.h */; };
 		631741F61E319ED0006B3C1B /* CoTouchlabDopplTestingMockGen.m in Sources */ = {isa = PBXBuildFile; fileRef = 63173A6E1E319EC8006B3C1B /* CoTouchlabDopplTestingMockGen.m */; };
-		631741F71E319ED0006B3C1B /* CoTouchlabDopplTestingPlatformUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 63173A6F1E319EC8006B3C1B /* CoTouchlabDopplTestingPlatformUtils.h */; };
-		631741F81E319ED0006B3C1B /* CoTouchlabDopplTestingPlatformUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 63173A701E319EC8006B3C1B /* CoTouchlabDopplTestingPlatformUtils.m */; };
 		631741F91E319ED0006B3C1B /* CoTouchlabDopplTestingTestingContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 63173A711E319EC8006B3C1B /* CoTouchlabDopplTestingTestingContext.h */; };
 		631741FA1E319ED0006B3C1B /* CoTouchlabDopplTestingTestingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 63173A721E319EC8006B3C1B /* CoTouchlabDopplTestingTestingContext.m */; };
 		631741FB1E319ED0006B3C1B /* CoTouchlabDopplTestingVisualJunitRunner.h in Headers */ = {isa = PBXBuildFile; fileRef = 63173A731E319EC8006B3C1B /* CoTouchlabDopplTestingVisualJunitRunner.h */; };
@@ -1974,6 +1972,8 @@
 		6317452C1E31B9A5006B3C1B /* JavaIoByteArrayInputStream$Moxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 631745281E31B9A5006B3C1B /* JavaIoByteArrayInputStream$Moxy.m */; };
 		6317452D1E31B9A5006B3C1B /* JavaIoInputStream$Moxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 631745291E31B9A5006B3C1B /* JavaIoInputStream$Moxy.h */; };
 		6317452E1E31B9A5006B3C1B /* JavaIoInputStream$Moxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6317452A1E31B9A5006B3C1B /* JavaIoInputStream$Moxy.m */; };
+		63CD90291E7867C900E8A037 /* CoTouchlabDopplUtilsPlatformUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 63CD90271E7867C900E8A037 /* CoTouchlabDopplUtilsPlatformUtils.h */; };
+		63CD902A1E7867CA00E8A037 /* CoTouchlabDopplUtilsPlatformUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CD90281E7867C900E8A037 /* CoTouchlabDopplUtilsPlatformUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -3212,8 +3212,6 @@
 		63173A6C1E319EC8006B3C1B /* CoTouchlabDopplTestingElementTreeDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoTouchlabDopplTestingElementTreeDebug.m; sourceTree = "<group>"; };
 		63173A6D1E319EC8006B3C1B /* CoTouchlabDopplTestingMockGen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoTouchlabDopplTestingMockGen.h; sourceTree = "<group>"; };
 		63173A6E1E319EC8006B3C1B /* CoTouchlabDopplTestingMockGen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoTouchlabDopplTestingMockGen.m; sourceTree = "<group>"; };
-		63173A6F1E319EC8006B3C1B /* CoTouchlabDopplTestingPlatformUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoTouchlabDopplTestingPlatformUtils.h; sourceTree = "<group>"; };
-		63173A701E319EC8006B3C1B /* CoTouchlabDopplTestingPlatformUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoTouchlabDopplTestingPlatformUtils.m; sourceTree = "<group>"; };
 		63173A711E319EC8006B3C1B /* CoTouchlabDopplTestingTestingContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoTouchlabDopplTestingTestingContext.h; sourceTree = "<group>"; };
 		63173A721E319EC8006B3C1B /* CoTouchlabDopplTestingTestingContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoTouchlabDopplTestingTestingContext.m; sourceTree = "<group>"; };
 		63173A731E319EC8006B3C1B /* CoTouchlabDopplTestingVisualJunitRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoTouchlabDopplTestingVisualJunitRunner.h; sourceTree = "<group>"; };
@@ -3982,6 +3980,8 @@
 		631745281E31B9A5006B3C1B /* JavaIoByteArrayInputStream$Moxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaIoByteArrayInputStream$Moxy.m; sourceTree = "<group>"; };
 		631745291E31B9A5006B3C1B /* JavaIoInputStream$Moxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaIoInputStream$Moxy.h; sourceTree = "<group>"; };
 		6317452A1E31B9A5006B3C1B /* JavaIoInputStream$Moxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaIoInputStream$Moxy.m; sourceTree = "<group>"; };
+		63CD90271E7867C900E8A037 /* CoTouchlabDopplUtilsPlatformUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoTouchlabDopplUtilsPlatformUtils.h; sourceTree = "<group>"; };
+		63CD90281E7867C900E8A037 /* CoTouchlabDopplUtilsPlatformUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoTouchlabDopplUtilsPlatformUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -6037,6 +6037,8 @@
 		63173A5C1E319EC8006B3C1B /* androidbasetest */ = {
 			isa = PBXGroup;
 			children = (
+				63CD90271E7867C900E8A037 /* CoTouchlabDopplUtilsPlatformUtils.h */,
+				63CD90281E7867C900E8A037 /* CoTouchlabDopplUtilsPlatformUtils.m */,
 				63173A5D1E319EC8006B3C1B /* CoTouchlabDopplTestingDopplContextTestRunner.h */,
 				63173A5E1E319EC8006B3C1B /* CoTouchlabDopplTestingDopplContextTestRunner.m */,
 				63173A5F1E319EC8006B3C1B /* CoTouchlabDopplTestingDopplHacks.h */,
@@ -6055,8 +6057,6 @@
 				63173A6C1E319EC8006B3C1B /* CoTouchlabDopplTestingElementTreeDebug.m */,
 				63173A6D1E319EC8006B3C1B /* CoTouchlabDopplTestingMockGen.h */,
 				63173A6E1E319EC8006B3C1B /* CoTouchlabDopplTestingMockGen.m */,
-				63173A6F1E319EC8006B3C1B /* CoTouchlabDopplTestingPlatformUtils.h */,
-				63173A701E319EC8006B3C1B /* CoTouchlabDopplTestingPlatformUtils.m */,
 				63173A711E319EC8006B3C1B /* CoTouchlabDopplTestingTestingContext.h */,
 				63173A721E319EC8006B3C1B /* CoTouchlabDopplTestingTestingContext.m */,
 				63173A731E319EC8006B3C1B /* CoTouchlabDopplTestingVisualJunitRunner.h */,
@@ -6679,6 +6679,7 @@
 				631741A31E319ED0006B3C1B /* RxProducer.h in Headers */,
 				631742111E319ED0006B3C1B /* OrgSkyscreamerJsonassertJSONCompare.h in Headers */,
 				631744BD1E319ED4006B3C1B /* OrgAssertjCoreUtilVisibleForTesting.h in Headers */,
+				63CD90291E7867C900E8A037 /* CoTouchlabDopplUtilsPlatformUtils.h in Headers */,
 				63173EAB1E319ECD006B3C1B /* ComGoogleGsonReflectTypeToken.h in Headers */,
 				631743751E319ED2006B3C1B /* OrgAssertjCoreErrorShouldBeToday.h in Headers */,
 				63173FA31E319ECE006B3C1B /* RxInternalOperatorsBlockingOperatorLatest.h in Headers */,
@@ -7070,7 +7071,6 @@
 				631740F91E319ECF006B3C1B /* RxInternalSchedulersImmediateScheduler.h in Headers */,
 				631741151E319ECF006B3C1B /* RxInternalUtilAtomicBaseLinkedAtomicQueue.h in Headers */,
 				63173F211E319ECD006B3C1B /* RetrofitPlatform.h in Headers */,
-				631741F71E319ED0006B3C1B /* CoTouchlabDopplTestingPlatformUtils.h in Headers */,
 				6317423B1E319ED0006B3C1B /* OrgAssertjCoreApiAbstractDateAssert.h in Headers */,
 				6317447F1E319ED4006B3C1B /* OrgAssertjCoreUtilArrayFormatter.h in Headers */,
 				6317449F1E319ED4006B3C1B /* OrgAssertjCoreUtilIntrospectionIntrospection.h in Headers */,
@@ -7710,7 +7710,6 @@
 				63173F6E1E319ECE006B3C1B /* RxFunctionsAction1.m in Sources */,
 				63173D961E319ECD006B3C1B /* AndroidDatabaseSqliteSQLiteAccessPermException.m in Sources */,
 				631740701E319ECE006B3C1B /* RxInternalOperatorsOperatorScan.m in Sources */,
-				631741F81E319ED0006B3C1B /* CoTouchlabDopplTestingPlatformUtils.m in Sources */,
 				6317425E1E319ED1006B3C1B /* OrgAssertjCoreApiAbstractShortArrayAssert.m in Sources */,
 				631742041E319ED0006B3C1B /* OrgSkyscreamerJsonassertComparatorCustomComparator.m in Sources */,
 				631744841E319ED4006B3C1B /* OrgAssertjCoreUtilArrayWrapperList.m in Sources */,
@@ -8055,6 +8054,7 @@
 				6317449C1E319ED4006B3C1B /* OrgAssertjCoreUtilIntrospectionFieldSupport.m in Sources */,
 				63173D941E319ECD006B3C1B /* AndroidDatabaseSqliteSQLiteAbortException.m in Sources */,
 				631740D01E319ECF006B3C1B /* RxInternalOperatorsSingleOnSubscribeDelaySubscriptionOther.m in Sources */,
+				63CD902A1E7867CA00E8A037 /* CoTouchlabDopplUtilsPlatformUtils.m in Sources */,
 				631741301E319ECF006B3C1B /* RxInternalUtilLinkedArrayList.m in Sources */,
 				63173F8E1E319ECE006B3C1B /* RxFunctionsFunc4.m in Sources */,
 				631743641E319ED2006B3C1B /* OrgAssertjCoreErrorShouldBeLessOrEqual.m in Sources */,
@@ -8495,6 +8495,7 @@
 				6317359A1E319C44006B3C1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6317359B1E319C44006B3C1B /* Build configuration list for PBXNativeTarget "iostestTests" */ = {
 			isa = XCConfigurationList;
@@ -8503,6 +8504,7 @@
 				6317359D1E319C44006B3C1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		631735BA1E319C57006B3C1B /* Build configuration list for PBXNativeTarget "retrofitframework" */ = {
 			isa = XCConfigurationList;
@@ -8511,6 +8513,7 @@
 				631735BC1E319C57006B3C1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
