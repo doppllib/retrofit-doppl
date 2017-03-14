@@ -4,14 +4,14 @@ package retrofit.mime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import co.touchlab.doppel.testing.DoppelTest;
+import co.touchlab.doppl.testing.DopplTest;
 
 
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static retrofit.mime.MimeUtil.parseCharset;
 
-@DoppelTest
+@DopplTest
 
 public class MimeUtilTest {
   @Test public void charsetParsing() {

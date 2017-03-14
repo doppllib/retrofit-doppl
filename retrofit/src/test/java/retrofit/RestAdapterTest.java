@@ -17,8 +17,8 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
-import co.touchlab.doppel.testing.DoppelTest;
-import co.touchlab.doppel.testing.MockGen;
+import co.touchlab.doppl.testing.DopplTest;
+import co.touchlab.doppl.testing.MockGen;
 import retrofit.client.Client;
 import retrofit.client.Header;
 import retrofit.client.Request;
@@ -56,7 +56,7 @@ import static retrofit.RestAdapter.LogLevel.HEADERS;
 import static retrofit.RestAdapter.LogLevel.HEADERS_AND_ARGS;
 import static retrofit.Utils.SynchronousExecutor;
 
-@DoppelTest
+@DopplTest
 @MockGen(classes = {/*"retrofit.Utils.SynchronousExecutor",*/ "retrofit.mime.TypedString", "java.io.ByteArrayInputStream", "java.io.InputStream"})
 public class RestAdapterTest {
   private static final List<Header> NO_HEADERS = Collections.emptyList();

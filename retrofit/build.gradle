@@ -1,7 +1,7 @@
 apply plugin: 'java'
-apply plugin: "net.ltgt.apt"
-apply plugin: 'com.touchlab.doppel.doppelgradle'
-apply plugin: 'maven-publish'
+apply plugin: 'net.ltgt.apt'
+apply plugin: 'co.touchlab.doppl.gradle'
+apply plugin: 'ivy-publish'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -10,29 +10,36 @@ dependencies {
     compile 'junit:junit:4.11'
 
     compile 'com.google.code.gson:gson:2.6.2'
-    doppel 'doppl.com.google.code.gson:gson:2.6.2.3@dop'
-    compile 'io.reactivex:rxjava:1.1.6'
-    doppel 'doppl.io.reactivex:rxjava:1.1.6.2@dop'
+    compile 'io.reactivex:rxjava:1.2.1'
+
+    doppl "com.google.code.gson:gson:$dopplGsonVersion:doppl"
+    doppl "io.reactivex:rxjava:$dopplRxJavaVersion:doppl"
+    testDoppl "co.touchlab.doppl:androidbasetest:$dopplCoreVersion:doppl"
+
+    provided "co.touchlab.doppl:androidbase:$dopplCoreVersion"
+    testCompile "co.touchlab.doppl:androidbasetest:$dopplCoreVersion"
+
     testCompile 'org.mockito:mockito-core:1.9.5'
-    testCompile group: 'com.google.guava', name: 'guava', version: '19.0'
-    testApt 'co.touchlab.doppel:testapt:0.3.2-SNAPSHOT'
+    testCompile 'com.google.guava:guava:19.0'
+    testApt "co.touchlab.doppl:testapt:$dopplCoreVersion"
 }
 
-group = 'doppl.com.squareup.retrofit'
-version = '1.9.0.2'
+group = 'com.squareup.retrofit'
+version = dopplRetrofit1Version
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
+        ivy(IvyPublication) {
             from components.java
-
-            artifact doppelArchive
+            artifact(dopplArchive) {
+                classifier 'doppl'
+                extension 'jar'
+            }
         }
     }
+
     repositories {
-        maven {
-            url dopplMavenDeploy
-        }
+        ivy { url dopplIvyDeploy }
     }
 }
 
@@ -40,31 +47,12 @@ test{
     enabled = false
 }
 
-j2objcTestDebug{
-    enabled = false
-}
-
-j2objcTestRelease{
-    enabled = false
-}
-
-j2objcConfig {
-    extraLinkerArgs '-lsqlite3'
-
-    xcodeTestProjectDir '../ios'  //  suggested directory name
-    xcodeTestTargetsIos 'ios', 'iosTests'  // replace with your iOS targets
-
-    j2objcCycleFinder { enabled = true }
-
+dopplConfig {
     cycleFinderArgs '--whitelist', 'cycle_whitelist.txt'
 
-    testPattern {
-        include '**/*Test.java'
-    }
+    copyMainOutput="../iostest/retrofitframework/main"
+    copyTestOutput="../iostest/retrofitframework/test"
 
-    finalConfigure()          // Must be last call to configuration
-
-    testMinExpectedTests 0
-
-    extraObjcCompilerArgs '-Wno-deprecated'
+    mappingsInput="src/test/java/retrofit.mappings"
+    copyDependencies true
 }

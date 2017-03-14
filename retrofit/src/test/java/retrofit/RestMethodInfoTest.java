@@ -10,10 +10,10 @@ import java.util.Set;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import co.touchlab.doppel.testing.DoppelHacks;
-import co.touchlab.doppel.testing.DoppelTest;
+import co.touchlab.doppl.testing.DopplHacks;
+import co.touchlab.doppl.testing.DopplTest;
 
-import co.touchlab.doppel.testing.PlatformUtils;
+import co.touchlab.doppl.utils.PlatformUtils;
 import retrofit.client.Response;
 import retrofit.http.GET;
 import retrofit.http.Query;
@@ -23,7 +23,7 @@ import rx.Observable;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings("unused") // Lots of unused parameters for example code.
-@DoppelTest
+@DopplTest
 
 public class RestMethodInfoTest {
   @Test public void pathParameterParsing() throws Exception {
@@ -131,7 +131,7 @@ public class RestMethodInfoTest {
   // a little of everything: a parameterized type, a generic array, and a wildcard.
   private static Map<? extends String, Set<Long>[]> extendingGenericCallbackType;
 
-  @DoppelHacks //j2objc doesn't like making the weird types
+  @DopplHacks //j2objc doesn't like making the weird types
   @Test public void extendingGenericCallback() throws Exception {
     if(PlatformUtils.isJ2objc())
       return;

@@ -7,13 +7,13 @@ import java.io.IOException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import co.touchlab.doppel.testing.DoppelTest;
+import co.touchlab.doppl.testing.DopplTest;
 
 
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DoppelTest
+@DopplTest
 
 public class TypedFileTest {
   private static final String PNG = "image/png";

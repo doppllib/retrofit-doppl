@@ -5,9 +5,9 @@ import java.util.concurrent.Executor;
 import org.junit.Before;
 import org.junit.Test;
 
-import co.touchlab.doppel.testing.DoppelTest;
-import co.touchlab.doppel.testing.ElementTreeDebug;
-import co.touchlab.doppel.testing.MockGen;
+import co.touchlab.doppl.testing.DopplTest;
+import co.touchlab.doppl.testing.ElementTreeDebug;
+import co.touchlab.doppl.testing.MockGen;
 
 
 import static org.mockito.Matchers.any;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static retrofit.Utils.SynchronousExecutor;
 
-@DoppelTest
+@DopplTest
 @MockGen(classes = {"retrofit.Utils.SynchronousExecutor", "retrofit.CallbackRunnableTest.SemiAnonymousCallbackRunnable"})
 public class CallbackRunnableTest {
   private Executor executor = spy(new SynchronousExecutor());

@@ -12,10 +12,10 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import co.touchlab.doppel.testing.DoppelHacks;
-import co.touchlab.doppel.testing.DoppelTest;
+import co.touchlab.doppl.testing.DopplHacks;
+import co.touchlab.doppl.testing.DopplTest;
 
-import co.touchlab.doppel.testing.MockGen;
+import co.touchlab.doppl.testing.MockGen;
 import retrofit.client.Header;
 import retrofit.client.Response;
 import retrofit.mime.TypedInput;
@@ -35,8 +35,8 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static retrofit.RequestInterceptor.RequestFacade;
 import static retrofit.RxSupport.Invoker;
 
-@DoppelTest
-@DoppelHacks //Mockito spy classes need to be named. Using apt to generate mock sources
+@DopplTest
+@DopplHacks //Mockito spy classes need to be named. Using apt to generate mock sources
 @MockGen(classes = {"retrofit.RxSupportTest.SpyInvoker", "retrofit.RxSupportTest.SpyRequestInterceptor",
         "retrofit.RxSupportTest.QueuedSynchronousExecutor", "retrofit.RxSupportTest.MockSubscriber"})
 public class RxSupportTest {

@@ -1,8 +1,6 @@
-import org.junit.runner.JUnitCore;
-import org.junit.runner.Result;
-import org.junit.runner.notification.Failure;
+import org.junit.runner.notification.RunListener;
 
-import java.util.List;
+import co.touchlab.doppl.testing.DopplJunitTestHelper;
 
 
 /**
@@ -10,8 +8,31 @@ import java.util.List;
  */
 public class OneTestRunner
 {
+    public static final Class[] classes = new Class[]{
+            retrofit.CallbackRunnableTest.class,
+            retrofit.CheckMockTest.class,
+            retrofit.EndpointsTest.class,
+            retrofit.ErrorHandlerTest.class,
+            retrofit.RequestBuilderTest.class,
+            retrofit.RestAdapterTest.class,
+            retrofit.RestMethodInfoTest.class,
+            retrofit.RxSupportTest.class,
+            retrofit.CheckMockTest.class,
+            retrofit.EndpointsTest.class,
+            retrofit.ErrorHandlerTest.class,
+            retrofit.RequestBuilderTest.class,
+            retrofit.RestAdapterTest.class,
+            retrofit.RestMethodInfoTest.class,
+            retrofit.RxSupportTest.class,
+            retrofit.client.UrlConnectionClientTest.class,
+            retrofit.mime.FormUrlEncodingTypedOutputTest.class,
+            retrofit.mime.MimeUtilTest.class,
+            retrofit.mime.MultipartTypedOutputTest.class,
+            retrofit.mime.TypedByteArrayTest.class,
+            retrofit.mime.TypedFileTest.class
+    };
 
-    private static void runAllInBackground() {
+    /*private static void runAllInBackground() {
         JUnitCore junit = new JUnitCore();
 
         Result result = runTestsByMyself(junit);
@@ -37,32 +58,48 @@ public class OneTestRunner
     private static Result runTestsByMyself(JUnitCore junit)
     {
         return junit.run(
-                /*retrofit.CallbackRunnableTest.class,
+                retrofit.CallbackRunnableTest.class,
                 retrofit.CheckMockTest.class,
                 retrofit.EndpointsTest.class,
                 retrofit.ErrorHandlerTest.class,
                 retrofit.RequestBuilderTest.class,
                 retrofit.RestAdapterTest.class,
-                retrofit.RestMethodInfoTest.class,*/
-                retrofit.RxSupportTest.class
-//                ,
-//                retrofit.CheckMockTest.class,
-//                retrofit.EndpointsTest.class,
-//                retrofit.ErrorHandlerTest.class,
-//                retrofit.RequestBuilderTest.class,
-//                retrofit.RestAdapterTest.class,
-//                retrofit.RestMethodInfoTest.class,
-//                retrofit.RxSupportTest.class,
-//                retrofit.client.UrlConnectionClientTest.class,
-//                retrofit.mime.FormUrlEncodingTypedOutputTest.class,
-//                retrofit.mime.MimeUtilTest.class,
-//                retrofit.mime.MultipartTypedOutputTest.class,
-//                retrofit.mime.TypedByteArrayTest.class,
-//                retrofit.mime.TypedFileTest.class
+                retrofit.RestMethodInfoTest.class,
+                retrofit.RxSupportTest.class,
+                retrofit.CheckMockTest.class,
+                retrofit.EndpointsTest.class,
+                retrofit.ErrorHandlerTest.class,
+                retrofit.RequestBuilderTest.class,
+                retrofit.RestAdapterTest.class,
+                retrofit.RestMethodInfoTest.class,
+                retrofit.RxSupportTest.class,
+                retrofit.client.UrlConnectionClientTest.class,
+                retrofit.mime.FormUrlEncodingTypedOutputTest.class,
+                retrofit.mime.MimeUtilTest.class,
+                retrofit.mime.MultipartTypedOutputTest.class,
+                retrofit.mime.TypedByteArrayTest.class,
+                retrofit.mime.TypedFileTest.class
         );
+    }*/
+
+    public static int runTests() {
+        return DopplJunitTestHelper.run(classes, new RunListener(), new DopplJunitTestHelper.DopplJunitListener()
+        {
+            @Override
+            public void startRun(String s)
+            {
+
+            }
+
+            @Override
+            public void endRun(String s)
+            {
+
+            }
+        });
     }
 
-    public static void runTests() {
+    /*public static void runTests() {
 
         new Thread(){
             @Override
@@ -71,5 +108,5 @@ public class OneTestRunner
                 runAllInBackground();
             }
         }.start();
-    }
+    }*/
 }

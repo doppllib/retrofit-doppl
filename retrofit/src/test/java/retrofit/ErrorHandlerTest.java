@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import co.touchlab.doppel.testing.DoppelTest;
+import co.touchlab.doppl.testing.DopplTest;
 
 import retrofit.client.Client;
 import retrofit.client.Header;
@@ -24,7 +24,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
-@DoppelTest
+@DopplTest
 public class ErrorHandlerTest {
 
   interface ExampleClient {

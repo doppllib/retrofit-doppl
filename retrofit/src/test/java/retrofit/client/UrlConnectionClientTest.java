@@ -12,7 +12,7 @@ import java.util.Map;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import co.touchlab.doppel.testing.DoppelTest;
+import co.touchlab.doppl.testing.DopplTest;
 
 import retrofit.TestingUtils;
 import retrofit.mime.TypedOutput;
@@ -21,7 +21,7 @@ import retrofit.mime.TypedString;
 import static org.assertj.core.api.Assertions.assertThat;
 import static retrofit.TestingUtils.assertBytes;
 
-@DoppelTest
+@DopplTest
 
 public class UrlConnectionClientTest {
   private static final String HOST = "http://example.com";

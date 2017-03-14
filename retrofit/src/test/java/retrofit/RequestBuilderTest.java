@@ -17,7 +17,7 @@ import java.util.Map;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import co.touchlab.doppel.testing.DoppelTest;
+import co.touchlab.doppl.testing.DopplTest;
 
 import retrofit.client.Header;
 import retrofit.client.Request;
@@ -60,7 +60,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;
 
 @SuppressWarnings("UnusedParameters") // Parameters inspected reflectively.
-@DoppelTest
+@DopplTest
 
 public class RequestBuilderTest {
   private RequestInterceptor interceptor;

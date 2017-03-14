@@ -5,13 +5,13 @@ import java.io.ByteArrayOutputStream;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import co.touchlab.doppel.testing.DoppelTest;
+import co.touchlab.doppl.testing.DopplTest;
 
 
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DoppelTest
+@DopplTest
 
 public class MultipartTypedOutputTest {
   @Test public void singlePart() throws Exception {

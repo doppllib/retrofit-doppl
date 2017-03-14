@@ -7,7 +7,7 @@ import java.util.List;
  * Records methods called against it as a RequestFacade and replays them when called as a
  * RequestInterceptor.
  */
-final class RequestInterceptorTape implements RequestInterceptor.RequestFacade, RequestInterceptor {
+final class RequestInterceptorTape implements RequestInterceptor, RequestInterceptor.RequestFacade{
 
   private final List<CommandWithParams> tape = new ArrayList<CommandWithParams>();
 
