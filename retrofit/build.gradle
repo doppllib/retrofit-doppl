@@ -1,10 +1,14 @@
 apply plugin: 'java'
 apply plugin: 'net.ltgt.apt'
-apply plugin: 'co.touchlab.doppl.gradle'
-apply plugin: 'ivy-publish'
+apply plugin: 'co.doppl.gradle'
+apply plugin: 'maven-publish'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
+
+def dopplCoreVersion = '0.7.1-SNAPSHOT'
+def dopplRxJavaVersion = '1.2.1.5'
+def dopplGsonVersion = '2.6.2.8'
 
 dependencies {
     compile 'junit:junit:4.11'
@@ -12,36 +16,51 @@ dependencies {
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'io.reactivex:rxjava:1.2.1'
 
-    doppl "com.google.code.gson:gson:$dopplGsonVersion:doppl"
-    doppl "io.reactivex:rxjava:$dopplRxJavaVersion:doppl"
-    testDoppl "co.touchlab.doppl:androidbasetest:$dopplCoreVersion:doppl"
+    doppl "co.doppl.com.google.code.gson:gson:$dopplGsonVersion:doppl"
+    doppl "co.doppl.io.reactivex:rxjava:$dopplRxJavaVersion:doppl"
+    testDoppl "co.doppl.lib:androidbasetest:$dopplCoreVersion:doppl"
 
-    provided "co.touchlab.doppl:androidbase:$dopplCoreVersion"
-    testCompile "co.touchlab.doppl:androidbasetest:$dopplCoreVersion"
+    provided "co.doppl.lib:androidbase:$dopplCoreVersion"
+    testCompile "co.doppl.lib:androidbasetest:$dopplCoreVersion"
 
     testCompile 'org.mockito:mockito-core:1.9.5'
     testCompile 'com.google.guava:guava:19.0'
-    testApt "co.touchlab.doppl:testapt:$dopplCoreVersion"
+    testApt "co.doppl.lib:testapt:$dopplCoreVersion"
 }
 
-group = 'com.squareup.retrofit'
-version = dopplRetrofit1Version
+group = 'co.doppl.com.squareup.retrofit'
+version = '1.9.0.7'
 
 publishing {
     publications {
-        ivy(IvyPublication) {
+        mavenJava(MavenPublication) {
             from components.java
             artifact(dopplArchive) {
                 classifier 'doppl'
                 extension 'jar'
             }
+            pom {
+                withXml {
+                    asNode().dependencies.dependency.find {
+                        it.artifactId.text() == "rxjava"
+                    }.version[0].value = dopplRxJavaVersion
+                    asNode().dependencies.dependency.find {
+                        it.artifactId.text() == "gson"
+                    }.version[0].value = dopplGsonVersion
+                }
+            }
         }
     }
-
     repositories {
-        ivy { url dopplIvyDeploy }
+        maven {
+            url dopplMavenDeploy
+        }
     }
 }
+
+ext.bintrayGitUrl = 'https://github.com/doppllib/retrofit-doppl.git'
+
+apply from: "$dopplSharedScriptHome/bintray.gradle"
 
 test{
     enabled = false
@@ -50,8 +69,8 @@ test{
 dopplConfig {
     cycleFinderArgs '--whitelist', 'cycle_whitelist.txt'
 
-    copyMainOutput="../iostest/retrofitframework/main"
-    copyTestOutput="../iostest/retrofitframework/test"
+    copyMainOutput "../iostest/retrofitframework/main"
+    copyTestOutput "../iostest/retrofitframework/test"
 
     mappingsInput="src/test/java/retrofit.mappings"
     copyDependencies true

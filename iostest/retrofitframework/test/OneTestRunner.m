@@ -78,7 +78,7 @@ J2OBJC_IGNORE_DESIGNATED_END
 
 + (void)initialize {
   if (self == [OneTestRunner class]) {
-    JreStrongAssignAndConsume(&OneTestRunner_classes, [IOSObjectArray newArrayWithObjects:(id[]){ RetrofitCallbackRunnableTest_class_(), RetrofitCheckMockTest_class_(), RetrofitEndpointsTest_class_(), RetrofitErrorHandlerTest_class_(), RetrofitRequestBuilderTest_class_(), RetrofitRestAdapterTest_class_(), RetrofitRestMethodInfoTest_class_(), RetrofitRxSupportTest_class_(), RetrofitCheckMockTest_class_(), RetrofitEndpointsTest_class_(), RetrofitErrorHandlerTest_class_(), RetrofitRequestBuilderTest_class_(), RetrofitRestAdapterTest_class_(), RetrofitRestMethodInfoTest_class_(), RetrofitRxSupportTest_class_(), RetrofitClientUrlConnectionClientTest_class_(), RetrofitMimeFormUrlEncodingTypedOutputTest_class_(), RetrofitMimeMimeUtilTest_class_(), RetrofitMimeMultipartTypedOutputTest_class_(), RetrofitMimeTypedByteArrayTest_class_(), RetrofitMimeTypedFileTest_class_() } count:21 type:IOSClass_class_()]);
+    JreStrongAssignAndConsume(&OneTestRunner_classes, [IOSObjectArray newArrayWithObjects:(id[]){ RetrofitCallbackRunnableTest_class_(), RetrofitCheckMockTest_class_(), RetrofitEndpointsTest_class_(), RetrofitErrorHandlerTest_class_(), RetrofitRequestBuilderTest_class_(), RetrofitRestAdapterTest_class_(), RetrofitRestMethodInfoTest_class_(), RetrofitRxSupportTest_class_(), RetrofitClientUrlConnectionClientTest_class_(), RetrofitMimeFormUrlEncodingTypedOutputTest_class_(), RetrofitMimeMimeUtilTest_class_(), RetrofitMimeMultipartTypedOutputTest_class_(), RetrofitMimeTypedByteArrayTest_class_(), RetrofitMimeTypedFileTest_class_() } count:14 type:IOSClass_class_()]);
     J2OBJC_SET_INITIALIZED(OneTestRunner)
   }
 }

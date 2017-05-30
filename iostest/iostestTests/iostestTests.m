@@ -17,6 +17,7 @@
 
 - (void)testExample {
     XCTAssertEqual([OneTestRunner runTests], 0, "Junit tests failed");
+    NSLog(@"asdflkj");
 }
 
 @end
