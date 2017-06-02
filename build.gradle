@@ -1,11 +1,12 @@
-apply from: '../dopplversions.gradle'
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
         jcenter()
         maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://dl.bintray.com/doppllib/maven" }
         maven { url dopplMavenDeploy }
+        maven { url dopplRepo }
     }
     dependencies {
         classpath 'net.ltgt.gradle:gradle-apt-plugin:0.9'
@@ -17,6 +18,8 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        maven { url "https://dl.bintray.com/doppllib/maven" }
         maven { url dopplMavenDeploy }
+        maven { url dopplRepo }
     }
 }

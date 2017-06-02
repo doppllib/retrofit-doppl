@@ -6,8 +6,8 @@ apply plugin: 'maven-publish'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-def dopplCoreVersion = '0.7.1-SNAPSHOT'
-def dopplRxJavaVersion = '1.2.1.5'
+def dopplCoreVersion = '0.7.1'
+def dopplRxJavaVersion = '1.2.1.1'
 def dopplGsonVersion = '2.6.2.8'
 
 dependencies {
@@ -29,7 +29,7 @@ dependencies {
 }
 
 group = 'co.doppl.com.squareup.retrofit'
-version = '1.9.0.7'
+version = '1.9.0.0'
 
 publishing {
     publications {
@@ -45,8 +45,14 @@ publishing {
                         it.artifactId.text() == "rxjava"
                     }.version[0].value = dopplRxJavaVersion
                     asNode().dependencies.dependency.find {
+                        it.artifactId.text() == "rxjava"
+                    }.groupId[0].value = "co.doppl.io.reactivex"
+                    asNode().dependencies.dependency.find {
                         it.artifactId.text() == "gson"
                     }.version[0].value = dopplGsonVersion
+                    asNode().dependencies.dependency.find {
+                        it.artifactId.text() == "gson"
+                    }.groupId[0].value = "co.doppl.com.google.code.gson"
                 }
             }
         }
