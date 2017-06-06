@@ -6,9 +6,11 @@ apply plugin: 'maven-publish'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-def dopplCoreVersion = '0.7.1'
-def dopplRxJavaVersion = '1.2.1.1'
-def dopplGsonVersion = '2.6.2.8'
+def javaCoreVersion = '0.7.4'
+def dopplCoreVersion = '0.7.4.0'
+
+def dopplRxJavaVersion = '1.2.1.2'
+def dopplGsonVersion = '2.6.2.0'
 
 dependencies {
     compile 'junit:junit:4.11'
@@ -16,57 +18,24 @@ dependencies {
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'io.reactivex:rxjava:1.2.1'
 
-    doppl "co.doppl.com.google.code.gson:gson:$dopplGsonVersion:doppl"
-    doppl "co.doppl.io.reactivex:rxjava:$dopplRxJavaVersion:doppl"
-    testDoppl "co.doppl.lib:androidbase:$dopplCoreVersion:doppl"
-    testDoppl "co.doppl.lib:androidbasetest:$dopplCoreVersion:doppl"
+    doppl "co.doppl.com.google.code.gson:gson:$dopplGsonVersion"
+    doppl "co.doppl.io.reactivex:rxjava:$dopplRxJavaVersion"
+    testDoppl "co.doppl.lib:androidbase:$dopplCoreVersion"
+    testDoppl "co.doppl.lib:androidbasetest:$dopplCoreVersion"
 
-    provided "co.doppl.lib:androidbase:$dopplCoreVersion"
-    testCompile "co.doppl.lib:androidbasetest:$dopplCoreVersion"
+    testCompile "co.doppl.lib:androidbasetest:$javaCoreVersion"
 
     testCompile 'org.mockito:mockito-core:1.9.5'
     testCompile 'com.google.guava:guava:19.0'
-    testApt "co.doppl.lib:testapt:$dopplCoreVersion"
+    testApt "co.doppl.lib:testapt:$javaCoreVersion"
 }
 
 group = 'co.doppl.com.squareup.retrofit'
-version = '1.9.0.1'
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-            artifact(dopplArchive) {
-                classifier 'doppl'
-                extension 'jar'
-            }
-            pom {
-                withXml {
-                    asNode().dependencies.dependency.find {
-                        it.artifactId.text() == "rxjava"
-                    }.version[0].value = dopplRxJavaVersion
-                    asNode().dependencies.dependency.find {
-                        it.artifactId.text() == "rxjava"
-                    }.groupId[0].value = "co.doppl.io.reactivex"
-                    asNode().dependencies.dependency.find {
-                        it.artifactId.text() == "gson"
-                    }.version[0].value = dopplGsonVersion
-                    asNode().dependencies.dependency.find {
-                        it.artifactId.text() == "gson"
-                    }.groupId[0].value = "co.doppl.com.google.code.gson"
-                }
-            }
-        }
-    }
-    repositories {
-        maven {
-            url dopplMavenDeploy
-        }
-    }
-}
+version = '1.9.0.2'
 
 ext.bintrayGitUrl = 'https://github.com/doppllib/retrofit-doppl.git'
 
+apply from: "$dopplSharedScriptHome/doppllibpublish.gradle"
 apply from: "$dopplSharedScriptHome/bintray.gradle"
 
 test{
