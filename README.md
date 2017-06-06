@@ -1,44 +1,42 @@
-#Doppl Info
+# Doppl Fork
 
-##Testing
+This is a fork of the Square Retrofit library to provide tests and modifications to support 
+iOS development with J2objc using the [Doppl build framework](http://doppl.co/). This specific 
+fork is focused on 1.x development. 2.x work will probably live in it's own fork.
 
-The tests run 100% when run in xcode (visually). Anything with Mockito.spy is using the source-gen mock
-classes rather than dynamic class generation, which means they're named classes. This shouldn't impact
-the validity of the tests.
+## Versions
 
-Initial effort to remove potential memory cycles has been completed. Should monitor in app builds to make sure that's not an issue.
+[1.9.0](https://github.com/doppllib/retrofit-doppl/tree/v1.9.0)
 
-Apache and OkHttp clients have been removed until OkHttp support can be added to doppl. Anything Appengine related has been removed. We're pegged to v1.9.0 because v2 uses Okhttp (AFAIK).
+## Usage
 
-Otherwise retrofit is stable and functional.
-
-#End Doppl Info
-
-Retrofit
-========
-
-Type-safe REST client for Android and Java by Square, Inc.
-
-For more information please see [the website][1].
-
-
-Download
---------
-
-Download [the latest JAR][2] or grab via Maven:
-```xml
-<dependency>
-  <groupId>com.squareup.retrofit</groupId>
-  <artifactId>retrofit</artifactId>
-  <version>1.9.0</version>
-</dependency>
-```
-or Gradle:
 ```groovy
-compile 'com.squareup.retrofit:retrofit:1.9.0'
+dependencies {
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    doppl 'co.doppl.com.squareup.retrofit:retrofit:1.9.0.1:doppl'
+    
+    doppl 'co.doppl.com.google.code.gson:gson:2.6.2.8:doppl'
+    doppl 'co.doppl.io.reactivex:rxjava:1.2.1.1:doppl'
+}
 ```
-Retrofit requires at minimum Java 6 or Android 2.3.
 
+### Transitive Dependencies
+
+Retrofit depends on gson and rxjava, and transitive dependencies need to be listed explicitly. 
+[Read More](http://doppl.co/docs/releaseissues.html)
+
+## Status
+
+Stable. No known memory issues. Tests passing.
+
+## Notes
+
+Retrofit 1 works using **retrofit.client.UrlConnectionClient**. The other client options weren't really
+useful in this context. The **retrofit.android.MainThreadExecutor** is modified to post requests back 
+to the main thread (as opposed to [core threading](https://github.com/doppllib/core-doppl)).
+
+Retrofit 2 is dependent on OKHttp, which is itself dependent on sorting out SSL Streams. This is 
+probably the biggest post release priority. See [wisth list](http://doppl.co/docs/librarystatus.html).
 
 License
 =======

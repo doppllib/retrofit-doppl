@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import co.touchlab.doppl.testing.DopplTest;
-import co.touchlab.doppl.testing.ElementTreeDebug;
 import co.touchlab.doppl.testing.MockGen;
 
 

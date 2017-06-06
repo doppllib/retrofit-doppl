@@ -4,7 +4,6 @@ buildscript {
     repositories {
         jcenter()
         maven { url "https://plugins.gradle.org/m2/" }
-        maven { url "https://dl.bintray.com/doppllib/maven" }
         maven { url dopplMavenDeploy }
         maven { url dopplRepo }
     }
@@ -18,7 +17,6 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-        maven { url "https://dl.bintray.com/doppllib/maven" }
         maven { url dopplMavenDeploy }
         maven { url dopplRepo }
     }

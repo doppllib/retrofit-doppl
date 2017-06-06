@@ -18,6 +18,7 @@ dependencies {
 
     doppl "co.doppl.com.google.code.gson:gson:$dopplGsonVersion:doppl"
     doppl "co.doppl.io.reactivex:rxjava:$dopplRxJavaVersion:doppl"
+    testDoppl "co.doppl.lib:androidbase:$dopplCoreVersion:doppl"
     testDoppl "co.doppl.lib:androidbasetest:$dopplCoreVersion:doppl"
 
     provided "co.doppl.lib:androidbase:$dopplCoreVersion"
@@ -29,7 +30,7 @@ dependencies {
 }
 
 group = 'co.doppl.com.squareup.retrofit'
-version = '1.9.0.0'
+version = '1.9.0.1'
 
 publishing {
     publications {
@@ -80,4 +81,11 @@ dopplConfig {
 
     mappingsInput="src/test/java/retrofit.mappings"
     copyDependencies true
+}
+
+task runIOSTests(type:Exec, dependsOn: 'dopplDeploy') {
+    workingDir '../iostest'
+
+    //on windows:
+    commandLine 'xcodebuild', 'test', '-project', 'iostest.xcodeproj', '-scheme', 'iostest', '-destination', 'platform=iOS Simulator,name=iPhone 7,OS=10.3'
 }
