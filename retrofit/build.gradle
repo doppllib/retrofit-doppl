@@ -10,7 +10,7 @@ def javaCoreVersion = '0.7.4'
 def dopplCoreVersion = '0.7.4.0'
 
 def dopplRxJavaVersion = '1.2.1.2'
-def dopplGsonVersion = '2.6.2.0'
+def dopplGsonVersion = '2.6.2.1'
 
 dependencies {
     compile 'junit:junit:4.11'
@@ -31,7 +31,7 @@ dependencies {
 }
 
 group = 'co.doppl.com.squareup.retrofit'
-version = '1.9.0.3-SNAPSHOT'
+version = '1.9.0.3'
 
 ext.bintrayGitUrl = 'https://github.com/doppllib/retrofit-doppl.git'
 
