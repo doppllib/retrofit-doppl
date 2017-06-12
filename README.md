@@ -13,17 +13,9 @@ fork is focused on 1.x development. 2.x work will probably live in it's own fork
 ```groovy
 dependencies {
     compile 'com.squareup.retrofit:retrofit:1.9.0'
-    doppl 'co.doppl.com.squareup.retrofit:retrofit:1.9.0.1:doppl'
-    
-    doppl 'co.doppl.com.google.code.gson:gson:2.6.2.8:doppl'
-    doppl 'co.doppl.io.reactivex:rxjava:1.2.1.1:doppl'
+    doppl 'co.doppl.com.squareup.retrofit:retrofit:1.9.0.3'
 }
 ```
-
-### Transitive Dependencies
-
-Retrofit depends on gson and rxjava, and transitive dependencies need to be listed explicitly. 
-[Read More](http://doppl.co/docs/releaseissues.html)
 
 ## Status
 
@@ -37,6 +29,10 @@ to the main thread (as opposed to [core threading](https://github.com/doppllib/c
 
 Retrofit 2 is dependent on OKHttp, which is itself dependent on sorting out SSL Streams. This is 
 probably the biggest post release priority. See [wisth list](http://doppl.co/docs/librarystatus.html).
+
+## Library Development
+
+See [docs](http://doppl.co/docs/createlibrary.html) for an overview of our setup and repo org for forked library development.
 
 License
 =======
