@@ -6,14 +6,14 @@ apply plugin: 'maven-publish'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-def javaCoreVersion = '0.7.4'
-def dopplCoreVersion = '0.7.4.0'
+def javaCoreVersion = '0.7.5'
+def dopplCoreVersion = '0.7.5.0'
 
-def dopplRxJavaVersion = '1.2.1.2'
-def dopplGsonVersion = '2.6.2.1'
+def dopplRxJavaVersion = '1.2.1.3'
+def dopplGsonVersion = '2.6.2.2'
 
 dependencies {
-    compile 'junit:junit:4.11'
+    testCompile 'junit:junit:4.11'
 
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'io.reactivex:rxjava:1.2.1'
@@ -31,7 +31,7 @@ dependencies {
 }
 
 group = 'co.doppl.com.squareup.retrofit'
-version = '1.9.0.4-SNAPSHOT'
+version = '1.9.0.4'
 
 ext.bintrayGitUrl = 'https://github.com/doppllib/retrofit-doppl.git'
 
