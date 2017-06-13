@@ -13,7 +13,7 @@ fork is focused on 1.x development. 2.x work will probably live in it's own fork
 ```groovy
 dependencies {
     compile 'com.squareup.retrofit:retrofit:1.9.0'
-    doppl 'co.doppl.com.squareup.retrofit:retrofit:1.9.0.4'
+    doppl 'co.doppl.com.squareup.retrofit:retrofit:1.9.0.5-SNAPSHOT'
 }
 ```
 

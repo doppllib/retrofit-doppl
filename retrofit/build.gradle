@@ -31,7 +31,7 @@ dependencies {
 }
 
 group = 'co.doppl.com.squareup.retrofit'
-version = '1.9.0.4'
+version = '1.9.0.5-SNAPSHOT'
 
 ext.bintrayGitUrl = 'https://github.com/doppllib/retrofit-doppl.git'
 
