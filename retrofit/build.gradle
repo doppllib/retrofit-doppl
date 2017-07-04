@@ -6,11 +6,11 @@ apply plugin: 'maven-publish'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-def javaCoreVersion = '0.7.5'
-def dopplCoreVersion = '0.7.5.0'
+def javaCoreVersion = '0.8.0'
+def dopplCoreVersion = '0.8.0.0'
 
-def dopplRxJavaVersion = '1.2.1.3'
-def dopplGsonVersion = '2.6.2.2'
+def dopplRxJavaVersion = '1.2.1.4'
+def dopplGsonVersion = '2.6.2.3'
 
 dependencies {
     testCompile 'junit:junit:4.11'
@@ -31,7 +31,7 @@ dependencies {
 }
 
 group = 'co.doppl.com.squareup.retrofit'
-version = '1.9.0.5-SNAPSHOT'
+version = '1.9.0.5'
 
 ext.bintrayGitUrl = 'https://github.com/doppllib/retrofit-doppl.git'
 
@@ -56,5 +56,5 @@ task runIOSTests(type:Exec, dependsOn: 'dopplDeploy') {
     workingDir '../iostest'
 
     //on windows:
-    commandLine 'xcodebuild', 'test', '-project', 'iostest.xcodeproj', '-scheme', 'iostest', '-destination', 'platform=iOS Simulator,name=iPhone 7,OS=10.3'
+    commandLine 'xcodebuild', 'test', '-project', 'iostest.xcodeproj', '-scheme', 'iostest', '-destination', 'platform=iOS Simulator,name=iPhone 7,OS=10.3.1'
 }
